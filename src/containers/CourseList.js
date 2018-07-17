@@ -15,7 +15,7 @@ class CourseList extends React.Component {
 
     courseRows() {
         var rows = this.state.courses.map((course) => {
-            return <CourseRow course={course} key={course.id} delete={this.deleteCourse}/>
+            return <CourseRow course={course} key={course.id} delete={this.deleteCourse} update={this.updateCourse}/>
         });
         return rows;
     }
@@ -29,6 +29,13 @@ class CourseList extends React.Component {
         this.courseService.createCourse(this.state.course).then(() => {
             this.findAllCourses();
         });
+    }
+
+    updateCourse(course, courseId) {
+        console.log(courseId);
+        // this.courseService.updateCourse(course, courseId).then(() => {
+        //     this.findAllCourses();
+        // });
     }
 
     deleteCourse(courseId) {
@@ -51,18 +58,31 @@ class CourseList extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
+                <div className="form-group row bg-primary">
+
+                    <i className="col-sm-1 col-form-label fa fa-bars" onClick={this.createCourse}/>
+
+                    <div className="col-sm-10">
+                        <input className="form-control bg-primary" id="titleFld" placeholder="cs101" onChange={this.titleChanged}/>
+                    </div>
+                    <i className="col-sm-1 col-form-label fa fa-plus-circle" onClick={this.createCourse}/>
+                </div>
+                {/*<div className="form-group row">*/}
+                    {/*<div className="col-sm-10">*/}
+                        {/*<input id="titleFld" placeholder="cs101" onChange={this.titleChanged}/>*/}
+                        {/*<i className="col-sm-2 col-form-label fa fa-plus-circle" onClick={this.createCourse}/>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
                 <h2> Course List </h2>
-                <table>
+                <table className="table">
                     <thead>
                     <tr>
                         <th>Title</th>
-                    </tr>
-                    <tr>
-                        <th><input id="titleFld" placeholder="cs101" onChange={this.titleChanged}/></th>
-                        <th>
-                            <button onClick={this.createCourse}>Add</button>
-                        </th>
+                        <th>Owned By</th>
+                        <th>Last Modified</th>
+                        <th><i className="fa fa-th"/></th>
+                        <th><i className="fa fa-sort"/></th>
                     </tr>
                     </thead>
                     <tbody>

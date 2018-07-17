@@ -6,6 +6,10 @@ class CourseRow extends React.Component {
         super(props);
     }
 
+    getModifiedTime(dateTime){
+        return new Date(dateTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+
     render() {
         return (
             <tr>
@@ -16,11 +20,26 @@ class CourseRow extends React.Component {
                     </Link>
                 </td>
                 <td>
-                    <button onClick={() => {
+                    me
+                </td>
+                <td>
+                    {this.getModifiedTime(this.props.course.modified)}
+                </td>
+                <td>
+                    <i onClick={() => {
+                        this.props.update(this.props.course, this.props.course.id)
+                    }} className="fa fa-pencil" >
+
+                    </i>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <i onClick={() => {
                         this.props.delete(this.props.course.id)
-                    }}>
-                        Delete
-                    </button>
+                    }} className="fa fa-trash" >
+
+                    </i>
 
                 </td>
             </tr>)
