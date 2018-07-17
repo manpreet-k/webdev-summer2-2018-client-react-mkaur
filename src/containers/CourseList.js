@@ -32,7 +32,9 @@ class CourseList extends React.Component {
     }
 
     deleteCourse(courseId) {
-        this.courseService.deleteCourse(courseId);
+        this.courseService.deleteCourse(courseId).then(() => {
+            this.findAllCourses();
+        });
     }
 
     componentDidMount() {
