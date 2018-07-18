@@ -75,10 +75,10 @@ export default class ModuleLists extends React.Component {
                     <h4>Modules for courseId: {this.state.courseId}</h4>
                 </div>
                 <div className="row">
-                    <input class="form-control" value={this.state.module.title}
+                    <input className="form-control" value={this.state.module.title}
                            placeholder="New Module"
                            onChange={this.setModuleTitle}/>
-                    <span class="input-group-addon">
+                    <span className="input-group-addon">
                         <i className="fa fa-plus" onClick={this.createModule}/>
                     </span>
                 </div>

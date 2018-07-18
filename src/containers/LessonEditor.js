@@ -1,15 +1,13 @@
 import React from 'react';
-import LessonTabs from "./LessonTabs";
-import LessonEditor from "./LessonEditor";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-class ModuleEditor extends React.Component {
+class LessonEditor extends React.Component {
 
     constructor() {
         super();
         this.state = {
             courseId: '',
-            moduleId: ''
+            moduleId: '',
+            lessonId:''
         };
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
@@ -35,22 +33,18 @@ class ModuleEditor extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div className="form-row">
-                    <div >
-                        <LessonTabs courseId={this.props.match.params.courseId}
-                                    moduleId={this.props.match.params.moduleId}/>
-                        <div>
-                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                               component={LessonEditor}>
-                        </Route>
-                        </div>
+
+                <div className="row">
+                    <div className="col-4">
+                        <h1>Topics</h1>
+                        <h2> courseId={this.props.match.params.courseId}</h2>
+                        <h3> moduleId={this.props.match.params.moduleId}</h3>
+                        <h4> lessonId={this.props.match.params.lessonId}</h4>
                     </div>
                 </div>
-            </Router>
 
         );
     }
 }
 
-export default ModuleEditor;
+export default LessonEditor;
