@@ -1,9 +1,12 @@
 import React from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import ModuleLists from './ModuleLists';
+import ModuleEditor from './ModuleEditor';
 
 class CourseEditor extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.selectCourse = this.selectCourse.bind(this);
         this.state = {courseId: ''};
     }
@@ -12,18 +15,28 @@ class CourseEditor extends React.Component {
         this.setState({courseId: courseId});
     }
 
+    componentDidMount() {
+        this.selectCourse(this.props.match.params.courseId);
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.selectCourse(newProps.match.params.courseId);
+    }
+
     render() {
         return (
-            <h3>Course {this.state.courseId}
-                </h3>)
-    }
+            <Router>
+            <div className="row">
+                <div className="col-4"><h2>Modules</h2><ModuleLists courseId={this.props.match.params.courseId}/></div>
+                <div className="col-8">
+                    <Route path="/course/:courseId/module/:moduleId"
+                           component={ModuleEditor}>
+                    </Route>
+                </div>
+            </div>
+            </Router>
 
-    componentDidMount() {
-        this.selectCourse (this.props.match.params.courseId);
-    }
-
-    componentWillReceiveProps(newProps){
-        this.selectCourse(newProps.match.params.courseId);
+        );
     }
 }
 
