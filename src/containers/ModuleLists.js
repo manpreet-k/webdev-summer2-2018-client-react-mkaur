@@ -70,18 +70,22 @@ export default class ModuleLists extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-4">
-                    <h4>Module List for courseId: {this.state.courseId}</h4>
-                    <input value={this.state.module.title}
+            <div className="container-fluid ">
+                <div>
+                    <h4>Modules for courseId: {this.state.courseId}</h4>
+                </div>
+                <div className="row">
+                    <input class="form-control" value={this.state.module.title}
                            placeholder="New Module"
                            onChange={this.setModuleTitle}/>
-                    <button onClick={this.createModule}>Create</button>
-
-
-                <ul className="list-group">
-                    {this.renderModules()}
-                </ul>
+                    <span class="input-group-addon">
+                        <i className="fa fa-plus" onClick={this.createModule}/>
+                    </span>
+                </div>
+                <div>
+                    <ul className="list-group">
+                        {this.renderModules()}
+                    </ul>
                 </div>
             </div>
         );
