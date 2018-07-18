@@ -27,8 +27,9 @@ class CourseEditor extends React.Component {
         return (
             <Router>
             <div className="row">
-                <div className="col-4"><h2>Modules</h2><ModuleLists courseId={this.props.match.params.courseId}/></div>
-                <div className="col-8">
+                <div className="col-md-6">
+                    <ModuleLists courseId={this.props.match.params.courseId}/></div>
+                <div className="col-6">
                     <Route path="/course/:courseId/module/:moduleId"
                            component={ModuleEditor}>
                     </Route>
