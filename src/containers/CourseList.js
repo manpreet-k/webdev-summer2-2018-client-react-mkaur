@@ -68,12 +68,6 @@ class CourseList extends React.Component {
                     </div>
                     <i className="col-sm-1 col-form-label fa fa-plus-circle" onClick={this.createCourse}/>
                 </div>
-                {/*<div className="form-group row">*/}
-                    {/*<div className="col-sm-10">*/}
-                        {/*<input id="titleFld" placeholder="cs101" onChange={this.titleChanged}/>*/}
-                        {/*<i className="col-sm-2 col-form-label fa fa-plus-circle" onClick={this.createCourse}/>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
                 <h2> Course List </h2>
                 <table className="table">
                     <thead>
