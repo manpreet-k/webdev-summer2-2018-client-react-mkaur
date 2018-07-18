@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 class CourseRow extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     getModifiedTime(dateTime){
         return new Date(dateTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -15,7 +15,7 @@ class CourseRow extends React.Component {
             <tr>
                 <td>
                     <Link to=
-                              {`/course/${this.props.course.id}/edit`}>
+                              {`/course/${this.props.course.id}`}>
                         {this.props.course.title}
                     </Link>
                 </td>
