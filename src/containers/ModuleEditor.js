@@ -1,4 +1,8 @@
 import React from 'react';
+import LessonTabs from "./LessonTabs";
+import LessonEditor from "./LessonEditor";
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+
 class ModuleEditor extends React.Component {
 
     constructor() {
@@ -31,16 +35,19 @@ class ModuleEditor extends React.Component {
 
     render() {
         return (
-
-            <div className="row">
-                <div className="col-4">
-                    <h2>Lessons</h2>
-                    <h2> courseId={this.props.match.params.courseId}</h2>
-                    <h2>moduleId={this.props.match.params.moduleId}</h2>
+            <Router>
+                <div className="form-row">
+                    <div >
+                        <LessonTabs courseId={this.props.match.params.courseId}
+                                    moduleId={this.props.match.params.moduleId}/>
+                        <div>
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                               component={LessonEditor}>
+                        </Route>
+                        </div>
+                    </div>
                 </div>
-
-            </div>
-
+            </Router>
 
         );
     }
