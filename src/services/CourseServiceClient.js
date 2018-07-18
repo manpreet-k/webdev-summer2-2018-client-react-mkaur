@@ -21,7 +21,7 @@ class CourseServiceClient
         var courseJson = {
             title: course.title,
             created: date.getTime(),
-            modified: date.getTime(),
+            modified: date.getTime()
         };
         var courseStr = JSON.stringify(courseJson);
         return fetch(COURSE_API_URL, {
@@ -70,7 +70,12 @@ class CourseServiceClient
     }
 
     updateCourse(courseId, course) {
-        var courseStr = JSON.stringify(course);
+        var date = new Date();
+        var courseJson = {
+            title: course.title,
+            modified: date.getTime()
+        }
+        var courseStr = JSON.stringify(courseJson);
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'put',
             headers: {

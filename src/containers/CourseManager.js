@@ -9,10 +9,10 @@ class CourseManager extends React.Component {
             <Router>
                 <div>
                     <h1>Course Manager</h1>
-                    <Route path="/course"
+                    <Route path="/courses"
                            component={CourseList}>
                     </Route>
-                    <Route path="/course/:courseId/edit"
+                    <Route path="/course/:courseId"
                            component={CourseEditor}>
                     </Route>
                 </div>
