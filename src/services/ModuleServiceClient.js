@@ -23,8 +23,7 @@ class ModuleServiceClient
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: moduleStr,
-            'credentials': 'include'
+            body: moduleStr
         })
             .then(function(response) {
                 return response.json();
@@ -36,8 +35,7 @@ class ModuleServiceClient
             method: 'delete',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            'credentials': 'include'
+            }
         })
             .then(function(response){
                 return response;
@@ -68,7 +66,7 @@ class ModuleServiceClient
             });
     }
 
-    findAllModulesForCourse(id, callback) {
+    findAllModulesForCourse(id) {
         return fetch(COURSE_API_URL + '/' + id + '/module', {
             method: 'get',
             headers: {
