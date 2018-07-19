@@ -1,6 +1,5 @@
 .nav-item{
     padding: 5px;
-    border: 1px solid #61686D;
 }
 
 .nav-pills li {
@@ -12,13 +11,19 @@
     padding: 5px;
 }
 
-.container-fluid{
-    border: 5px solid darkblue;
+.wbdv-lesson-tabs{
+    padding: 5px;
+    background-color: #007BFF;
 }
 
-.nav-tabs > li > div{
-    background-color: blue;
+.wbdv-topic-pills{
+    padding: 5px;
 }
+
+
+/*.container-fluid{*/
+    /*border: 5px solid darkblue;*/
+/*}*/
 
 .list-group{
     background-color: gray;
@@ -27,4 +32,23 @@
 .wbdv-module-list-item{
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.wbdv-new-lesson{
+    border: none;
+}
+
+.wbdv-lesson-item{
+    border: 2px solid #FFF;
+}
+
+.wbdv-pill-item{
+    background-color: #BFDEFF;
+    border: 2px solid #61686D;
+}
+.wbdv-link {
+    color: #FFF;
+}
+.wbdv-link:hover {
+    color: #000000;
 }
