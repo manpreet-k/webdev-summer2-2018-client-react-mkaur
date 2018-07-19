@@ -1,0 +1,54 @@
+.nav-item{
+    padding: 5px;
+}
+
+.nav-pills li {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.wbdv-module-list{
+    padding: 5px;
+}
+
+.wbdv-lesson-tabs{
+    padding: 5px;
+    background-color: #007BFF;
+}
+
+.wbdv-topic-pills{
+    padding: 5px;
+}
+
+
+/*.container-fluid{*/
+    /*border: 5px solid darkblue;*/
+/*}*/
+
+.list-group{
+    background-color: gray;
+}
+
+.wbdv-module-list-item{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.wbdv-new-lesson{
+    border: none;
+}
+
+.wbdv-lesson-item{
+    border: 2px solid #FFF;
+}
+
+.wbdv-pill-item{
+    background-color: #BFDEFF;
+    border: 2px solid #61686D;
+}
+.wbdv-link {
+    color: #FFF;
+}
+.wbdv-link:hover {
+    color: #000000;
+}

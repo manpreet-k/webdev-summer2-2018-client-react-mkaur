@@ -36,16 +36,17 @@ class ModuleEditor extends React.Component {
     render() {
         return (
             <Router>
-                <div className="form-row">
-                    <div >
+                <div>
+                    <nav className="wbdv-lesson-tabs navbar navbar-expand-lg justify-content-between">
                         <LessonTabs courseId={this.props.match.params.courseId}
                                     moduleId={this.props.match.params.moduleId}/>
-                        <div>
+                    </nav>
+                    <div className="tab-content">
                         <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                                component={LessonEditor}>
                         </Route>
-                        </div>
                     </div>
+
                 </div>
             </Router>
 

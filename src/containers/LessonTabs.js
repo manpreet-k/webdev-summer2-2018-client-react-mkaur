@@ -19,6 +19,7 @@ export default class LessonTabs extends React.Component {
         this.setCourseId = this.setCourseId.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.setLessonTitle = this.setLessonTitle.bind(this);
+        this.createLessonServiceCall = this.createLessonServiceCall.bind(this);
     }
 
     setModuleId(moduleId) {
@@ -52,19 +53,32 @@ export default class LessonTabs extends React.Component {
     }
 
     setLessons(lessons) {
+        this.setState({lesson: {title: ''}});
         this.setState({lessons: lessons})
     }
 
     createLesson() {
+        if(undefined === this.state.lesson || '' === this.state.lesson.title){
+            this.setState({lesson: {title: 'New Lesson'}}, function () {
+                this.createLessonServiceCall();
+            });
+        }
+        else this.createLessonServiceCall();
+    }
+
+    createLessonServiceCall(){
         this.lessonService.createLesson(this.state.courseId, this.state.moduleId, this.state.lesson).then(() => {
             this.findAllLessonsForModule(this.state.courseId, this.state.moduleId);
         });
     }
 
     deleteLesson(lessonId) {
-        this.lessonService.deleteLesson(lessonId).then(() => {
-            this.findAllLessonsForModule(this.state.courseId, this.state.moduleId)
-        });
+        var input = window.confirm("Are you sure you want to delete this lesson?");
+        if (input === true) {
+            this.lessonService.deleteLesson(lessonId).then(() => {
+                this.findAllLessonsForModule(this.state.courseId, this.state.moduleId)
+            });
+        }
     }
 
     updateLesson(lessonId, lesson) {
@@ -87,25 +101,26 @@ export default class LessonTabs extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="form-row">
-                    <span className="col-11">
-                    <input onChange={this.setLessonTitle}
-                           value={this.state.lesson.title}
-                           placeholder="New Lesson Name"
-                           className="form-control"/>
+            <div>
 
-                    </span>
-                    <span className="col-1">
-                    <i className="fa fa-plus-circle" onClick={this.createLesson}/>
-                        </span>
-                </div>
-
-                <nav className="navbar navbar-expand-lg navbar-dark bg-light justify-content-between">
                     <ul className="nav nav-tabs">
                         {this.renderLessons()}
+                        <li className="wbdv-new-lesson nav-item">
+                            <div className="form-row">
+                                <span className="col-11">
+                                    <input onChange={this.setLessonTitle}
+                                           value={this.state.lesson.title}
+                                           placeholder="New Lesson"
+                                           className="form-control"/>
+
+                                </span>
+                                <span className="col-1">
+                                    <i className="fa fa-plus" onClick={this.createLesson}/>
+                                </span>
+                            </div>
+                        </li>
                     </ul>
-                </nav>
+
             </div>
         );
     }
