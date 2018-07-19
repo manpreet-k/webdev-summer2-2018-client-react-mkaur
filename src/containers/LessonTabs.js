@@ -102,10 +102,10 @@ export default class LessonTabs extends React.Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg justify-content-between">
+
                     <ul className="nav nav-tabs">
                         {this.renderLessons()}
-                        <li className="nav-item">
+                        <li className="wbdv-new-lesson nav-item">
                             <div className="form-row">
                                 <span className="col-11">
                                     <input onChange={this.setLessonTitle}
@@ -120,7 +120,7 @@ export default class LessonTabs extends React.Component {
                             </div>
                         </li>
                     </ul>
-                </nav>
+
             </div>
         );
     }
