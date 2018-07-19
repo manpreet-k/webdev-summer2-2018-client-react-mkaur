@@ -20,6 +20,7 @@ export default class TopicPills extends React.Component {
         this.setLessonId = this.setLessonId.bind(this);
         this.createTopic = this.createTopic.bind(this);
         this.setTopicTitle = this.setTopicTitle.bind(this);
+        this.createTopicServiceCall = this.createTopicServiceCall.bind(this);
     }
 
     setModuleId(moduleId) {
@@ -59,10 +60,20 @@ export default class TopicPills extends React.Component {
     }
 
     setTopics(topics) {
+        this.setState({topic: {title: ''}});
         this.setState({topics: topics})
     }
 
     createTopic() {
+        if(undefined === this.state.topic || '' === this.state.topic.title){
+            this.setState({topic: {title: 'New Topic'}}, function () {
+                this.createTopicServiceCall();
+            });
+        }
+        else this.createTopicServiceCall();
+    }
+
+    createTopicServiceCall(){
         this.topicService.createTopic(this.state.courseId,
             this.state.moduleId, this.state.lessonId, this.state.topic).then(() => {
             this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId);
@@ -110,7 +121,7 @@ export default class TopicPills extends React.Component {
                     <span className="col-11">
                     <input onChange={this.setTopicTitle}
                            value={this.state.topic.title}
-                           placeholder="New Topic Name"
+                           placeholder="New Topic"
                            className="form-control"/>
 
                     </span>

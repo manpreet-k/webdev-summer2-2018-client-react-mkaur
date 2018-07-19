@@ -7,10 +7,11 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseServiceClient.instance;
-        this.state = {courses: []};
+        this.state = {courses: [], course:{title:''}};
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.createCourseServiceCall = this.createCourseServiceCall.bind(this);
     }
 
     courseRows() {
@@ -25,8 +26,8 @@ class CourseList extends React.Component {
     }
 
     createCourse() {
-        if(undefined === this.state.course){
-            this.setState({course: {title: 'New Course Name'}}, function () {
+        if(undefined === this.state.course || '' === this.state.course.title){
+            this.setState({course: {title: 'New Course'}}, function () {
                 this.createCourseServiceCall();
             });
         }
@@ -62,7 +63,7 @@ class CourseList extends React.Component {
     findAllCourses() {
         this.courseService.findAllCourses().then((courses) => {
             this.setState({courses: courses});
-            console.log(courses);
+            this.setState({course: {title:''}});
         });
     }
 
@@ -75,7 +76,11 @@ class CourseList extends React.Component {
                     <i className="col-sm-1 col-form-label fa fa-bars" onClick={this.createCourse}/>
 
                     <div className="col-sm-10">
-                        <input className="form-control bg-primary" id="titleFld" placeholder="cs101" onChange={this.titleChanged}/>
+                        <input className="form-control bg-primary"
+                               id="titleFld"
+                               placeholder="New Course"
+                               value={this.state.course.title}
+                               onChange={this.titleChanged}/>
                     </div>
                     <i className="col-sm-1 col-form-label fa fa-plus-circle" onClick={this.createCourse}/>
                 </div>

@@ -15,6 +15,7 @@ export default class ModuleLists extends React.Component {
         this.setModuleTitle = this.setModuleTitle.bind(this);
         this.createModule = this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
+        this.createModuleServiceCall = this.createModuleServiceCall.bind(this);
     }
 
     setCourseId(courseId) {
@@ -48,7 +49,7 @@ export default class ModuleLists extends React.Component {
 
     createModule() {
         if(undefined === this.state.module || '' === this.state.module.title){
-            this.setState({module: {title: 'New Module Name'}}, function () {
+            this.setState({module: {title: 'New Module'}}, function () {
                 this.createModuleServiceCall();
             });
         }
@@ -93,7 +94,7 @@ export default class ModuleLists extends React.Component {
                     <span className="col-11">
                     <input onChange={this.setModuleTitle}
                            value={this.state.module.title}
-                           placeholder="New Module Name"
+                           placeholder="New Module"
                            className="form-control"/>
 
                     </span>
