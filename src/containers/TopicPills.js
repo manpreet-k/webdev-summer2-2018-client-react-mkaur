@@ -70,9 +70,12 @@ export default class TopicPills extends React.Component {
     }
 
     deleteTopic(topicId) {
-        this.topicService.deleteTopic(topicId).then(() => {
-            this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
-        });
+        var input = window.confirm("Are you sure you want to delete this topic?");
+        if (input === true) {
+            this.topicService.deleteTopic(topicId).then(() => {
+                this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
+            });
+        }
     }
 
     updateTopic(topicId, topic) {

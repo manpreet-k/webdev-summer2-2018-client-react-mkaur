@@ -47,9 +47,12 @@ class CourseList extends React.Component {
     }
 
     deleteCourse(courseId) {
-        this.courseService.deleteCourse(courseId).then(() => {
-            this.findAllCourses();
-        });
+        var input = window.confirm("Are you sure you want to delete this course?");
+        if (input === true) {
+            this.courseService.deleteCourse(courseId).then(() => {
+                this.findAllCourses();
+            });
+        }
     }
 
     componentDidMount() {
