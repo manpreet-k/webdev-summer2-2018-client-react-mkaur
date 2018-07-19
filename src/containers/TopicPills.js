@@ -96,8 +96,14 @@ export default class TopicPills extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="form-row">
+            <div>
+
+
+                <nav className="navbar navbar-expand-lg navbar-dark bg-light justify-content-between">
+                    <ul className="nav nav-pills nav-justified">
+                        {this.renderTopics()}
+                        <li>
+                            <div className="form-row">
                     <span className="col-11">
                     <input onChange={this.setTopicTitle}
                            value={this.state.topic.title}
@@ -105,14 +111,11 @@ export default class TopicPills extends React.Component {
                            className="form-control"/>
 
                     </span>
-                    <span className="col-1">
-                    <i className="fa fa-plus-circle" onClick={this.createTopic}/>
+                                <span className="col-1">
+                    <i className="fa fa-plus" onClick={this.createTopic}/>
                         </span>
-                </div>
-
-                <nav className="navbar navbar-expand-lg navbar-dark bg-light justify-content-between">
-                    <ul className="nav nav-pills nav-justified">
-                        {this.renderTopics()}
+                            </div>
+                        </li>
                     </ul>
                 </nav>
             </div>
