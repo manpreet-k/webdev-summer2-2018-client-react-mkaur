@@ -7,22 +7,30 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseServiceClient.instance;
-        this.state = {courses: [], course:{title:''}};
+        this.state = {
+            courses: [],
+            course:{
+                title:'',
+                id:''}
+        };
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
         this.createCourseServiceCall = this.createCourseServiceCall.bind(this);
+        this.editCourse = this.editCourse.bind(this);
+        this.updateCourse = this.updateCourse.bind(this);
     }
 
     courseRows() {
         var rows = this.state.courses.map((course) => {
-            return <CourseRow course={course} key={course.id} delete={this.deleteCourse} update={this.updateCourse}/>
+            return <CourseRow course={course} key={course.id} delete={this.deleteCourse} update={this.editCourse}/>
         });
         return rows;
     }
 
     titleChanged(event) {
-        this.setState({course: {title: event.target.value}});
+        var id = this.state.course.id;
+        this.setState({course: {title: event.target.value, id}});
     }
 
     createCourse() {
@@ -40,11 +48,14 @@ class CourseList extends React.Component {
         });
     }
 
-    updateCourse(course, courseId) {
-        console.log(courseId);
-        // this.courseService.updateCourse(course, courseId).then(() => {
-        //     this.findAllCourses();
-        // });
+    updateCourse(){
+        this.courseService.updateCourse(this.state.course.id, this.state.course).then(() => {
+            this.findAllCourses();
+        });
+    }
+
+    editCourse(course){
+        this.setState({course: {title:course.title, id: course.id}});
     }
 
     deleteCourse(courseId) {
@@ -71,21 +82,24 @@ class CourseList extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="form-group row bg-primary">
+                <div className="form-group row bg-primary wbdv-new-course-div">
 
                     <i className="col-sm-1 col-form-label fa fa-bars" onClick={this.createCourse}/>
 
-                    <div className="col-sm-10">
-                        <input className="form-control bg-primary"
+                    <div className="col-sm-9">
+                        <input className="form-control"
                                id="titleFld"
                                placeholder="New Course"
                                value={this.state.course.title}
                                onChange={this.titleChanged}/>
                     </div>
-                    <i className="col-sm-1 col-form-label fa fa-plus-circle" onClick={this.createCourse}/>
+                    <div className="col-sm-2">
+                    <i className="col-sm-1 col-form-label fa fa-plus" onClick={this.createCourse}/>
+                    <i className="col-sm-1 col-form-label fa fa-check" onClick={this.updateCourse}/>
+                    </div>
                 </div>
                 <h2> Course List </h2>
-                <table className="table">
+                <table className="table" >
                     <thead>
                     <tr>
                         <th>Title</th>

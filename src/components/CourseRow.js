@@ -27,7 +27,7 @@ class CourseRow extends React.Component {
                 </td>
                 <td>
                     <i onClick={() => {
-                        this.props.update(this.props.course, this.props.course.id)
+                        this.props.update(this.props.course)
                     }} className="fa fa-pencil" >
 
                     </i>
