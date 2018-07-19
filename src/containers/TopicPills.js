@@ -65,7 +65,7 @@ export default class TopicPills extends React.Component {
     }
 
     createTopic() {
-        if(undefined === this.state.topic || '' === this.state.topic.title){
+        if (undefined === this.state.topic || '' === this.state.topic.title) {
             this.setState({topic: {title: 'New Topic'}}, function () {
                 this.createTopicServiceCall();
             });
@@ -73,7 +73,7 @@ export default class TopicPills extends React.Component {
         else this.createTopicServiceCall();
     }
 
-    createTopicServiceCall(){
+    createTopicServiceCall() {
         this.topicService.createTopic(this.state.courseId,
             this.state.moduleId, this.state.lessonId, this.state.topic).then(() => {
             this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId);
@@ -98,12 +98,12 @@ export default class TopicPills extends React.Component {
     renderTopics() {
         let topics = this.state.topics.map((topic) => {
             return <TopicPillItem key={topic.id}
-                                 topic={topic}
-                                 courseId={this.state.courseId}
-                                 moduleId={this.state.moduleId}
-                                 lessonId={this.state.lessonId}
-                                 delete={this.deleteTopic}
-                                 update={this.updateTopic}/>
+                                  topic={topic}
+                                  courseId={this.state.courseId}
+                                  moduleId={this.state.moduleId}
+                                  lessonId={this.state.lessonId}
+                                  delete={this.deleteTopic}
+                                  update={this.updateTopic}/>
         });
         return topics;
     }
@@ -111,13 +111,10 @@ export default class TopicPills extends React.Component {
     render() {
         return (
             <div>
-
-
-                <nav className="navbar navbar-expand-lg navbar-dark bg-light justify-content-between">
-                    <ul className="nav nav-pills nav-justified">
-                        {this.renderTopics()}
-                        <li>
-                            <div className="form-row">
+                <ul className="wbdv-topic-pills nav nav-pills nav-justified">
+                    {this.renderTopics()}
+                    <li>
+                        <div className="form-row">
                     <span className="col-11">
                     <input onChange={this.setTopicTitle}
                            value={this.state.topic.title}
@@ -125,13 +122,12 @@ export default class TopicPills extends React.Component {
                            className="form-control"/>
 
                     </span>
-                                <span className="col-1">
+                            <span className="col-1">
                     <i className="fa fa-plus" onClick={this.createTopic}/>
                         </span>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
             </div>
         );
     }
