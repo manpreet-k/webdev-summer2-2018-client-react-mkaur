@@ -1,7 +1,7 @@
 import React from 'react';
 import TopicServiceClient from "../services/TopicServiceClient";
 
-export  default  class TopicEditor extends React.Component {
+export default class TopicEditor extends React.Component {
 
     constructor() {
         super();
@@ -26,15 +26,14 @@ export  default  class TopicEditor extends React.Component {
         this.getTitle(newProps.match.params.courseId);
     }
 
-render() {
+    render() {
         return (
+            <div className="row">
+                <div className="col-4">
+                    {/*<h1>{this.props.match.params.courseId} {this.props.match.params.lessonId}</h1>*/}
 
-                <div className="row">
-                    <div className="col-4">
-                        {/*<h1>{this.props.match.params.courseId} {this.props.match.params.lessonId}</h1>*/}
-
-                    </div>
                 </div>
+            </div>
 
         );
     }
