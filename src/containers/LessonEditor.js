@@ -1,6 +1,6 @@
 import React from 'react';
 import TopicPills from "./TopicPills";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import TopicEditor from "./TopicEditor";
 
 class LessonEditor extends React.Component {
@@ -10,7 +10,7 @@ class LessonEditor extends React.Component {
         this.state = {
             courseId: '',
             moduleId: '',
-            lessonId:''
+            lessonId: ''
         };
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
@@ -36,21 +36,18 @@ class LessonEditor extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div className="form-row">
-                    <div className="tab-content">
-                        <TopicPills courseId={this.props.match.params.courseId}
-                                    moduleId={this.props.match.params.moduleId}
-                                    lessonId={this.props.match.params.lessonId}/>
-                        <div>
-                            <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                                   component={TopicEditor}>
-                            </Route>
-                        </div>
+            <div className="form-row">
+                <div className="tab-content">
+                    <TopicPills courseId={this.props.match.params.courseId}
+                                moduleId={this.props.match.params.moduleId}
+                                lessonId={this.props.match.params.lessonId}/>
+                    <div>
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                               component={TopicEditor}>
+                        </Route>
                     </div>
                 </div>
-            </Router>
-
+            </div>
         );
     }
 }
