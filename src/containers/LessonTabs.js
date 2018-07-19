@@ -87,20 +87,22 @@ export default class LessonTabs extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div>
                 <nav className="navbar navbar-expand-lg justify-content-between">
                     <ul className="nav nav-tabs">
                         {this.renderLessons()}
                         <li className="nav-item">
                             <div className="form-row">
-                    <span className="col-11">
-                        <input onChange={this.setLessonTitle}
-                               value={this.state.lesson.title}
-                               placeholder="New Lesson Name"
-                               className="form-control"/>
+                                <span className="col-11">
+                                    <input onChange={this.setLessonTitle}
+                                           value={this.state.lesson.title}
+                                           placeholder="New Lesson Name"
+                                           className="form-control"/>
 
-                    </span><span className="col-1"><i className="fa fa-plus-circle" onClick={this.createLesson}/>
-                            </span>
+                                </span>
+                                <span className="col-1">
+                                    <i className="fa fa-plus" onClick={this.createLesson}/>
+                                </span>
                             </div>
                         </li>
                     </ul>
