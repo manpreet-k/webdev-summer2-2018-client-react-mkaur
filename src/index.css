@@ -1,0 +1,37 @@
+.nav-item{
+    padding: 5px;
+    border: 1px solid #61686D;
+}
+
+.nav-pills li {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.wbdv-lesson-item{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.wbdv-module-list{
+    background-color: blue;
+    padding: 5px;
+}
+
+.container-fluid{
+    border: 5px solid orange;
+}
+
+.nav-tabs > li > Link{
+    background-color: blue;
+}
+
+.list-group{
+    background-color: aqua;
+
+}
+
+.wbdv-module-list-item{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
