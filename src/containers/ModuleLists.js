@@ -22,17 +22,17 @@ export default class ModuleLists extends React.Component {
     }
 
     setModuleTitle(event) {
-        this.setState({module: {title: event.target.value}})
+        this.setState({module: {title: event.target.value}});
     }
 
     componentDidMount() {
         this.setCourseId(this.props.courseId);
-        this.findAllModulesForCourse(this.props.courseId)
+        this.findAllModulesForCourse(this.props.courseId);
     }
 
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.courseId);
-        this.findAllModulesForCourse(newProps.courseId)
+        this.findAllModulesForCourse(newProps.courseId);
     }
 
     findAllModulesForCourse(courseId) {
@@ -42,19 +42,27 @@ export default class ModuleLists extends React.Component {
     }
 
     setModules(modules) {
+        this.setState({module: {title: ''}});
         this.setState({modules: modules})
     }
 
     createModule() {
-        this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
-            this.findAllModulesForCourse(this.state.courseId);
-        });
+        if(undefined === this.state.module){
+            this.setState({module: {title: 'New Module Name'}}, function () {
+                this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
+                    this.findAllModulesForCourse(this.state.courseId);
+                });
+            });
+        }
     }
 
     deleteModule(moduleId) {
-        this.moduleService.deleteModule(moduleId).then(() => {
-            this.findAllModulesForCourse(this.state.courseId)
-        });
+        var input = window.confirm("Are you sure you want to delete this module?");
+        if (input === true) {
+            this.moduleService.deleteModule(moduleId).then(() => {
+                this.findAllModulesForCourse(this.state.courseId)
+            });
+        }
     }
 
     renderModules() {
@@ -70,22 +78,30 @@ export default class ModuleLists extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid ">
-                <div>
-                    <h4>Modules for courseId: {this.state.courseId}</h4>
+            <div className="container">
+                <div className="form-row">
+                    <div className="col-12">
+                        <h4>Modules for {this.state.courseId}</h4>
+                    </div>
                 </div>
-                <div className="row">
-                    <input className="form-control" value={this.state.module.title}
-                           placeholder="New Module"
-                           onChange={this.setModuleTitle}/>
-                    <span className="input-group-addon">
-                        <i className="fa fa-plus" onClick={this.createModule}/>
+                <div className="form-row">
+                    <span className="col-11">
+                    <input onChange={this.setModuleTitle}
+                           value={this.state.module.title}
+                           placeholder="New Lesson Name"
+                           className="form-control"/>
+
                     </span>
+                    <span className="col-1">
+                    <i className="fa fa-plus" onClick={this.createModule}/>
+                        </span>
                 </div>
-                <div>
+                <div className="form-row">
+                    <div className="col-12">
                     <ul className="list-group">
                         {this.renderModules()}
                     </ul>
+                    </div>
                 </div>
             </div>
         );
