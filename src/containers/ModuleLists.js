@@ -48,7 +48,7 @@ export default class ModuleLists extends React.Component {
     }
 
     createModule() {
-        if(undefined === this.state.module || '' === this.state.module.title){
+        if (undefined === this.state.module || '' === this.state.module.title) {
             this.setState({module: {title: 'New Module'}}, function () {
                 this.createModuleServiceCall();
             });
@@ -56,7 +56,7 @@ export default class ModuleLists extends React.Component {
         else this.createModuleServiceCall();
     }
 
-    createModuleServiceCall(){
+    createModuleServiceCall() {
         this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
             this.findAllModulesForCourse(this.state.courseId);
         });
@@ -79,36 +79,30 @@ export default class ModuleLists extends React.Component {
                                    delete={this.deleteModule}
                                    update={this.updateModule}/>
         });
-        return (<ul>{modules}</ul>)
+        return modules;
     }
 
     render() {
         return (
-            <div className="container">
-                <div className="form-row">
-                    <div className="col-12">
-                        <h4>Modules for {this.state.courseId}</h4>
-                    </div>
-                </div>
-                <div className="form-row">
-                    <span className="col-11">
-                    <input onChange={this.setModuleTitle}
-                           value={this.state.module.title}
-                           placeholder="New Module"
-                           className="form-control"/>
+            <div>
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseId}</h2>
+                <ul>
 
-                    </span>
-                    <span className="col-1">
-                    <i className="fa fa-plus" onClick={this.createModule}/>
-                        </span>
-                </div>
-                <div className="form-row">
-                    <div className="col-12">
-                    <ul className="list-group">
-                        {this.renderModules()}
-                    </ul>
-                    </div>
-                </div>
+
+                        <div className="row">
+                            <div className="col-11">
+                        <input onChange={this.setModuleTitle}
+                               value={this.state.module.title}
+                               placeholder="New Module"
+                        className="form-control"/>
+                        </div>
+                        <div className="col-1">
+                        <i className="fa fa-plus" onClick={this.createModule}/>
+                        </div>
+                        </div>
+
+                    {this.renderModules()}
+                </ul>
             </div>
         );
     }
