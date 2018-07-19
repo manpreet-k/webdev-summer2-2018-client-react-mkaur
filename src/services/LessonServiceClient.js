@@ -1,6 +1,6 @@
 let _singleton = Symbol();
-const COURSE_API_URL = 'http://localhost:8080/api/course';
-const LESSON_API_URL = 'http://localhost:8080/api/lesson';
+const COURSE_API_URL = 'https://webdev-summer2-2018-mkaur.herokuapp.com/api/course';
+const LESSON_API_URL = 'https://webdev-summer2-2018-mkaur.herokuapp.com/api/lesson';
 
 class LessonServiceClient
 {
