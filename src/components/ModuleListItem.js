@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 export default class ModuleListItem extends React.Component {
     render() {
         return (
-            <div className="list-group-item">
-                <ul>
+            <div className="container">
+                <li className="wbdv-module-list-item list-group-item list-group-item-primary">
                     <Link
                         to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
                         {this.props.module.title}
@@ -23,7 +23,7 @@ export default class ModuleListItem extends React.Component {
                            }}
                         />
                     </span>
-                </ul>
+                </li>
             </div>
         );
     }
