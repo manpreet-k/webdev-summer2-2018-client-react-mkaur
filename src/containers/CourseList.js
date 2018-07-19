@@ -27,11 +27,16 @@ class CourseList extends React.Component {
     createCourse() {
         if(undefined === this.state.course){
             this.setState({course: {title: 'New Course Name'}}, function () {
-                this.courseService.createCourse(this.state.course).then(() => {
-                    this.findAllCourses();
-                });
+                this.createCourseServiceCall();
             });
         }
+        else this.createCourseServiceCall();
+    }
+
+    createCourseServiceCall(){
+        this.courseService.createCourse(this.state.course).then(() => {
+            this.findAllCourses();
+        });
     }
 
     updateCourse(course, courseId) {

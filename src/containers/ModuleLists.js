@@ -47,13 +47,18 @@ export default class ModuleLists extends React.Component {
     }
 
     createModule() {
-        if(undefined === this.state.module){
+        if(undefined === this.state.module || '' === this.state.module.title){
             this.setState({module: {title: 'New Module Name'}}, function () {
-                this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
-                    this.findAllModulesForCourse(this.state.courseId);
-                });
+                this.createModuleServiceCall();
             });
         }
+        else this.createModuleServiceCall();
+    }
+
+    createModuleServiceCall(){
+        this.moduleService.createModule(this.state.courseId, this.state.module).then(() => {
+            this.findAllModulesForCourse(this.state.courseId);
+        });
     }
 
     deleteModule(moduleId) {
@@ -88,7 +93,7 @@ export default class ModuleLists extends React.Component {
                     <span className="col-11">
                     <input onChange={this.setModuleTitle}
                            value={this.state.module.title}
-                           placeholder="New Lesson Name"
+                           placeholder="New Module Name"
                            className="form-control"/>
 
                     </span>
