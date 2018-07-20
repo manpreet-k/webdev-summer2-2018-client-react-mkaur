@@ -16,10 +16,9 @@ export default class ModuleListItem extends React.Component {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={constants.getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                        )}
+                        className={snapshot.isDragging?
+                                    "wbdv-draggable-list-item-dragging":
+                                    "wbdv-draggable-list-item"}
                     >
                         <Link
                             to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>

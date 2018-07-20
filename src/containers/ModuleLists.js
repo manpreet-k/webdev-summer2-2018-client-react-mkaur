@@ -138,7 +138,9 @@ export default class ModuleLists extends React.Component {
                         {(provided, snapshot) => (
                             <div
                                 ref={provided.innerRef}
-                                style={constants.getListStyle(snapshot.isDraggingOver)}
+                                className={snapshot.isDraggingOver?
+                                "wbdv-draggable-list-dragging":
+                                "wbdv-draggable-list"}
                             >
                                 {this.renderModules()}
                                 {provided.placeholder}

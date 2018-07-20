@@ -52,3 +52,29 @@
 .wbdv-link:hover {
     color: #000000;
 }
+
+.wbdv-draggable-list{
+    background-color: white;
+    padding: 5px 5px 0 0;
+    margin: 5px 0 5px 0;
+}
+
+.wbdv-draggable-list-dragging{
+    background-color: lightblue;
+    padding: 5px 5px 0 0;
+    margin: 5px 0 5px 0;
+}
+
+.wbdv-draggable-list-item{
+    padding: 5px;
+    margin: 0 0 5px 0;
+    border: 1px solid lightgray;
+    background: white;
+}
+
+.wbdv-draggable-list-item-dragging{
+    padding: 5px;
+    margin: 0 0 5px 0;
+    border: 1px solid lightgray;
+    background: lightgreen
+}
