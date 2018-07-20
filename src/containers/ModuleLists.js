@@ -1,6 +1,8 @@
 import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleServiceClient from "../services/ModuleServiceClient";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import * as constants from '../constants/constants';
 
 export default class ModuleLists extends React.Component {
     constructor(props) {
@@ -16,6 +18,35 @@ export default class ModuleLists extends React.Component {
         this.createModule = this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
         this.createModuleServiceCall = this.createModuleServiceCall.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
+    }
+
+    // a little function to help us with reordering the result
+    reorder(list, startIndex, endIndex) {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    }
+
+
+
+    onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
+
+        const courses = this.reorder(
+            this.state.modules,
+            result.source.index,
+            result.destination.index
+        );
+
+        this.setState({
+            courses,
+        });
     }
 
     setCourseId(courseId) {
@@ -72,12 +103,14 @@ export default class ModuleLists extends React.Component {
     }
 
     renderModules() {
-        let modules = this.state.modules.map((module) => {
+        let modules = this.state.modules.map((module, index) => {
             return <ModuleListItem key={module.id}
+                                   index={index}
                                    courseId={this.state.courseId}
                                    module={module}
                                    delete={this.deleteModule}
-                                   update={this.updateModule}/>
+                                   update={this.updateModule}
+            />
         });
         return modules;
     }
@@ -86,21 +119,33 @@ export default class ModuleLists extends React.Component {
         return (
             <div className="wbdv-module-list">
                 <h2>&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseId}</h2>
-                <ul>
-                    <div className="row">
-                        <div className="col-11">
-                            <input onChange={this.setModuleTitle}
-                                   value={this.state.module.title}
-                                   placeholder="New Module"
-                                   className="form-control"/>
-                        </div>
-                        <div className="col-1">
-                            <i className="fa fa-plus" onClick={this.createModule}/>
-                        </div>
-                    </div>
 
-                    {this.renderModules()}
-                </ul>
+
+                <div className="row">
+                    <div className="col-11">
+                        <input onChange={this.setModuleTitle}
+                               value={this.state.module.title}
+                               placeholder="New Module"
+                               className="form-control"/>
+                    </div>
+                    <div className="col-1">
+                        <i className="fa fa-plus" onClick={this.createModule}/>
+                    </div>
+                </div>
+
+                <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable droppableId="droppable">
+                        {(provided, snapshot) => (
+                            <div
+                                ref={provided.innerRef}
+                                style={constants.getListStyle(snapshot.isDraggingOver)}
+                            >
+                                {this.renderModules()}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             </div>
         );
     }
