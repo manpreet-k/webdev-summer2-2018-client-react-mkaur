@@ -1,8 +1,7 @@
 import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleServiceClient from "../services/ModuleServiceClient";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import * as constants from '../constants/constants';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 export default class ModuleLists extends React.Component {
     constructor(props) {
