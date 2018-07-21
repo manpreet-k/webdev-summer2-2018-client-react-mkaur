@@ -20,11 +20,6 @@
     padding: 5px;
 }
 
-
-/*.container-fluid{*/
-    /*border: 5px solid darkblue;*/
-/*}*/
-
 .list-group{
     background-color: gray;
 }
@@ -77,4 +72,12 @@
     margin: 0 0 5px 0;
     border: 1px solid lightgray;
     background: lightgreen
+}
+
+.wbdv-card{
+    width: 18rem
+}
+
+.wbdv-new-course-div{
+    padding: 5px;
 }
