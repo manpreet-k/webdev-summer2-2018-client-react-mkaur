@@ -2,13 +2,16 @@ import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleServiceClient from "../services/ModuleServiceClient";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import CourseServiceClient from "../services/CourseServiceClient";
 
 export default class ModuleLists extends React.Component {
     constructor(props) {
         super(props);
         this.moduleService = ModuleServiceClient.instance;
+        this.courseService = CourseServiceClient.instance;
         this.state = {
             courseId: '',
+            courseTitle:'',
             module: {title: ''},
             modules: []
         };
@@ -18,6 +21,8 @@ export default class ModuleLists extends React.Component {
         this.deleteModule = this.deleteModule.bind(this);
         this.createModuleServiceCall = this.createModuleServiceCall.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.setCourseTitle = this.setCourseTitle.bind(this);
+        this.findCourseById = this.findCourseById.bind(this);
     }
 
     // a little function to help us with reordering the result
@@ -52,6 +57,10 @@ export default class ModuleLists extends React.Component {
         this.setState({courseId: courseId});
     }
 
+    setCourseTitle(courseTitle) {
+        this.setState({courseTitle: courseTitle});
+    }
+
     setModuleTitle(event) {
         this.setState({module: {title: event.target.value}});
     }
@@ -59,16 +68,24 @@ export default class ModuleLists extends React.Component {
     componentDidMount() {
         this.setCourseId(this.props.courseId);
         this.findAllModulesForCourse(this.props.courseId);
+        this.findCourseById(this.props.courseId);
     }
 
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.courseId);
         this.findAllModulesForCourse(newProps.courseId);
+        this.findCourseById(newProps.courseId);
     }
 
     findAllModulesForCourse(courseId) {
         this.moduleService.findAllModulesForCourse(courseId).then((modules) => {
             this.setModules(modules)
+        });
+    }
+
+    findCourseById(courseId){
+        this.courseService.findCourseById(courseId).then((course) => {
+            this.setCourseTitle(course.title);
         });
     }
 
@@ -117,7 +134,7 @@ export default class ModuleLists extends React.Component {
     render() {
         return (
             <div className="wbdv-module-list">
-                <h2>&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseId}</h2>
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseTitle}</h2>
 
 
                 <div className="row">

@@ -20,6 +20,7 @@ export default class LessonTabs extends React.Component {
         this.createLesson = this.createLesson.bind(this);
         this.setLessonTitle = this.setLessonTitle.bind(this);
         this.createLessonServiceCall = this.createLessonServiceCall.bind(this);
+        this.deleteLesson = this.deleteLesson.bind(this);
     }
 
     setModuleId(moduleId) {
@@ -115,7 +116,7 @@ export default class LessonTabs extends React.Component {
 
                                 </span>
                                 <span className="col-1">
-                                    <i className="fa fa-plus" onClick={this.createLesson}/>
+                                    <i className="fa fa-plus wbdv-plus" onClick={this.createLesson}/>
                                 </span>
                             </div>
                         </li>
