@@ -1,7 +1,8 @@
 import React from 'react';
 import LessonServiceClient from '../services/LessonServiceClient';
 import LessonTabItem from '../components/LessonTabItem';
-
+import LessonEditor from "./LessonEditor";
+import {Route} from 'react-router-dom';
 export default class LessonTabs extends React.Component {
     constructor(props) {
         super();
@@ -103,8 +104,7 @@ export default class LessonTabs extends React.Component {
     render() {
         return (
             <div>
-
-                    <ul className="nav nav-tabs">
+                    <ul className="wbdv-lesson-tabs nav nav-tabs">
                         {this.renderLessons()}
                         <li className="wbdv-new-lesson nav-item">
                             <div className="form-row">
@@ -121,7 +121,11 @@ export default class LessonTabs extends React.Component {
                             </div>
                         </li>
                     </ul>
-
+                <div className="tab-content">
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                           component={LessonEditor}>
+                    </Route>
+                </div>
             </div>
         );
     }
