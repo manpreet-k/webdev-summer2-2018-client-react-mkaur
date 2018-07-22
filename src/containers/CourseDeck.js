@@ -95,9 +95,9 @@ export default class CourseDeck extends Component {
                                onChange={this.titleChanged}/>
                     </div>
                     <div className="col-sm-3">
-                        <i className="col-sm-1 col-form-label fa fa-plus" onClick={this.createCourse}/>
-                        <i className="col-sm-1 col-form-label fa fa-check" onClick={this.updateCourse}/>
-                        <i className="col-sm-1 col-form-label fa fa-list" onClick={this.listView}/>
+                        <i className="col-sm-1 col-form-label fa fa-plus wbdv-icon-white" onClick={this.createCourse}/>
+                        <i className="col-sm-1 col-form-label fa fa-check wbdv-icon-white" onClick={this.updateCourse}/>
+                        <i className="col-sm-1 col-form-label fa fa-list wbdv-icon-white" onClick={this.listView}/>
                     </div>
                 </div>
                 <h2> Courses </h2>

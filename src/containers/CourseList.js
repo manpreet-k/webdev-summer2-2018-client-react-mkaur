@@ -97,9 +97,9 @@ class CourseList extends React.Component {
                                onChange={this.titleChanged}/>
                     </div>
                     <div className="col-sm-3">
-                        <i className="col-sm-1 col-form-label fa fa-plus" onClick={this.createCourse}/>
-                        <i className="col-sm-1 col-form-label fa fa-check" onClick={this.updateCourse}/>
-                        <i className="col-sm-1 col-form-label fa fa-th" onClick={this.gridView}/>
+                        <i className="col-sm-1 col-form-label fa fa-plus wbdv-icon-white" onClick={this.createCourse}/>
+                        <i className="col-sm-1 col-form-label fa fa-check wbdv-icon-white" onClick={this.updateCourse}/>
+                        <i className="col-sm-1 col-form-label fa fa-th wbdv-icon-white" onClick={this.gridView}/>
                     </div>
                 </div>
                 <h2> Course List </h2>

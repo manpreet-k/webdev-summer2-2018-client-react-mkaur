@@ -13,7 +13,7 @@ export default class LessonTabItem extends React.Component {
                 &nbsp;
                 <i onClick={() => {
                     this.props.delete(this.props.lesson.id)
-                }} className="fa fa-times wbdv-cross" >
+                }} className="fa fa-times wbdv-icon-small wbdv-icon-white" >
 
                 </i>
             </li>
