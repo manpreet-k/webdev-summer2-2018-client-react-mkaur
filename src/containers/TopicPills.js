@@ -1,6 +1,9 @@
 import React from 'react';
 import TopicServiceClient from '../services/TopicServiceClient';
 import TopicPillItem from '../components/TopicPillItem';
+import TopicEditor from "./TopicEditor";
+import {Route} from 'react-router-dom';
+import TopicPage from "../components/TopicPage";
 
 export default class TopicPills extends React.Component {
     constructor(props) {
@@ -21,6 +24,7 @@ export default class TopicPills extends React.Component {
         this.createTopic = this.createTopic.bind(this);
         this.setTopicTitle = this.setTopicTitle.bind(this);
         this.createTopicServiceCall = this.createTopicServiceCall.bind(this);
+        this.deleteTopic = this.deleteTopic.bind(this);
     }
 
     setModuleId(moduleId) {
@@ -120,7 +124,6 @@ export default class TopicPills extends React.Component {
                            value={this.state.topic.title}
                            placeholder="New Topic"
                            className="form-control"/>
-
                     </span>
                             <span className="col-1">
                     <i className="fa fa-plus" onClick={this.createTopic}/>
@@ -128,6 +131,11 @@ export default class TopicPills extends React.Component {
                         </div>
                     </li>
                 </ul>
+                <div className="tab-content">
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                           component={TopicPage}>
+                    </Route>
+            </div>
             </div>
         );
     }
