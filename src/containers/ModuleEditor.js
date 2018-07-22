@@ -1,7 +1,5 @@
 import React from 'react';
 import LessonTabs from "./LessonTabs";
-import LessonEditor from "./LessonEditor";
-import {Route} from 'react-router-dom';
 
 class ModuleEditor extends React.Component {
 
@@ -36,18 +34,11 @@ class ModuleEditor extends React.Component {
     render() {
         return (
             <div>
-                <nav className="wbdv-lesson-tabs navbar navbar-expand-lg justify-content-between">
+                <nav className="navbar navbar-expand-lg justify-content-between">
                     <LessonTabs courseId={this.props.match.params.courseId}
                                 moduleId={this.props.match.params.moduleId}/>
                 </nav>
-                <div className="tab-content">
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                           component={LessonEditor}>
-                    </Route>
-                </div>
-
             </div>
-
         );
     }
 }

@@ -2,12 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 class CourseRow extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
-    getModifiedTime(dateTime){
-        return new Date(dateTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+   static getModifiedTime(dateTime){
+        return new Date(dateTime).toISOString().slice(0, 19).replace('T', ' ');
     }
 
     render() {
@@ -23,14 +20,13 @@ class CourseRow extends React.Component {
                     me
                 </td>
                 <td>
-                    {this.getModifiedTime(this.props.course.modified)}
+                    {CourseRow.getModifiedTime(this.props.course.modified)}
                 </td>
                 <td>
-                    <i onClick={() => {
-                        this.props.update(this.props.course)
-                    }} className="fa fa-pencil" >
-
-                    </i>
+                    <select onClick={()=>this.props.update(this.props.course)}>
+                        <option value=""/>
+                        <option value="edit">edit</option>
+                    </select>
                 </td>
                 <td>
                 </td>
