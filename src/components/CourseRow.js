@@ -23,9 +23,9 @@ class CourseRow extends React.Component {
                     {CourseRow.getModifiedTime(this.props.course.modified)}
                 </td>
                 <td>
-                    <select onClick={()=>this.props.update(this.props.course)}>
+                    <select onChange={()=>this.props.update(this.props.course)}>
                         <option value=""/>
-                        <option value="edit">edit</option>
+                        <option value="Edit">Edit</option>
                     </select>
                 </td>
                 <td>

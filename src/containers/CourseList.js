@@ -86,18 +86,20 @@ class CourseList extends React.Component {
             <div className="container-fluid">
                 <div className="form-group row bg-primary wbdv-new-course-div">
 
-                    <i className="disabled  col-sm-1 col-form-label fa fa-bars"/>
+                    {/*<i className="col-sm-1 col-form-label fa fa-bars"/>*/}
+                    <i className="col-sm-1 col-form-label"/>
 
-                    <div className="col-sm-9">
+                    <div className="col-sm-8">
                         <input className="form-control"
                                id="titleFld"
-                               placeholder="New Course"
+                               placeholder="Course Title"
                                value={this.state.course.title}
                                onChange={this.titleChanged}/>
                     </div>
-                    <div className="col-sm-2">
+                    <div className="col-sm-3">
                         <i className="col-sm-1 col-form-label fa fa-plus" onClick={this.createCourse}/>
                         <i className="col-sm-1 col-form-label fa fa-check" onClick={this.updateCourse}/>
+                        <i className="col-sm-1 col-form-label fa fa-th" onClick={this.gridView}/>
                     </div>
                 </div>
                 <h2> Course List </h2>
@@ -107,8 +109,9 @@ class CourseList extends React.Component {
                         <th>Title</th>
                         <th>Owned By</th>
                         <th>Last Modified</th>
-                        <th><i className="fa fa-th" onClick={this.gridView}/></th>
-                        <th><i className="fa fa-sort"/></th>
+                        <th>actions</th>
+                        {/*<th><i className="fa fa-sort"/></th>*/}
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

@@ -110,7 +110,7 @@ export default class LessonTabs extends React.Component {
                                 <span className="col-11">
                                     <input onChange={this.setLessonTitle}
                                            value={this.state.lesson.title}
-                                           placeholder="New Lesson"
+                                           placeholder="Lesson Title"
                                            className="form-control"/>
 
                                 </span>

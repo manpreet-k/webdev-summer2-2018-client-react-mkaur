@@ -86,7 +86,7 @@ export default class CourseDeck extends Component {
         return (
             <div className="container-fluid">
                 <div className="form-group row bg-primary wbdv-new-course-div">
-                    <i className="col-sm-1 col-form-label fa fa-bars" onClick={this.createCourse}/>
+                    <i className="col-sm-1 col-form-label fa fa-bars"/>
                     <div className="col-sm-8">
                         <input className="form-control"
                                id="titleFld"
@@ -101,7 +101,7 @@ export default class CourseDeck extends Component {
                     </div>
                 </div>
                 <h2> Courses </h2>
-                <div className="wbdv-card-deck">
+                <div className="card-deck wbdv-card-deck">
                     {this.courseRows()}
                 </div>
             </div>
