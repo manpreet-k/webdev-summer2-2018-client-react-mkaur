@@ -1,13 +1,12 @@
 import React from 'react';
 import TopicServiceClient from '../services/TopicServiceClient';
 import TopicPillItem from '../components/TopicPillItem';
-import TopicEditor from "./TopicEditor";
 import {Route} from 'react-router-dom';
 import TopicPage from "../components/TopicPage";
 
 export default class TopicPills extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             lessonId: '',
             moduleId: '',
@@ -85,7 +84,7 @@ export default class TopicPills extends React.Component {
     }
 
     deleteTopic(topicId) {
-        var input = window.confirm("Are you sure you want to delete this topic?");
+        let input = window.confirm("Are you sure you want to delete this topic?");
         if (input === true) {
             this.topicService.deleteTopic(topicId).then(() => {
                 this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
@@ -100,7 +99,7 @@ export default class TopicPills extends React.Component {
     }
 
     renderTopics() {
-        let topics = this.state.topics.map((topic) => {
+        return this.state.topics.map((topic) => {
             return <TopicPillItem key={topic.id}
                                   topic={topic}
                                   courseId={this.state.courseId}
@@ -109,7 +108,6 @@ export default class TopicPills extends React.Component {
                                   delete={this.deleteTopic}
                                   update={this.updateTopic}/>
         });
-        return topics;
     }
 
     render() {

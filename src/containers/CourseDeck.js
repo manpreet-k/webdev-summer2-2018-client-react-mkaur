@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import CourseCard from '../components/CourseCard';
 import CourseServiceClient from "../services/CourseServiceClient";
-import {Link} from 'react-router-dom';
 
 export default class CourseDeck extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.courseService = CourseServiceClient.instance;
         this.state = {
             courses: [],
@@ -24,14 +23,13 @@ export default class CourseDeck extends Component {
     }
 
     courseRows() {
-        var rows = this.state.courses.map((course) => {
+        return this.state.courses.map((course) => {
             return <CourseCard course={course} key={course.id} delete={this.deleteCourse} update={this.editCourse}/>;
         });
-        return rows;
     }
 
     titleChanged(event) {
-        var id = this.state.course.id;
+        let id = this.state.course.id;
         this.setState({course: {title: event.target.value, id}});
     }
 
@@ -61,7 +59,7 @@ export default class CourseDeck extends Component {
     }
 
     deleteCourse(courseId) {
-        var input = window.confirm("Are you sure you want to delete this course?");
+        let input = window.confirm("Are you sure you want to delete this course?");
         if (input === true) {
             this.courseService.deleteCourse(courseId).then(() => {
                 this.findAllCourses();

@@ -22,19 +22,13 @@ class CourseList extends React.Component {
     }
 
     courseRows() {
-        let counter=0;
-        var rows = this.state.courses.map((course) => {
-            counter++;
-            let key = "empty" + counter;
-            if(''=== course.modified)
-                return <EmptyRow key={key} course={course}/>;
-            else return <CourseRow course={course} key={course.id} delete={this.deleteCourse} update={this.editCourse}/>;
+        return this.state.courses.map((course) => {
+            return <CourseRow course={course} key={course.id} delete={this.deleteCourse} update={this.editCourse}/>;
         });
-        return rows;
     }
 
     titleChanged(event) {
-        var id = this.state.course.id;
+        let id = this.state.course.id;
         this.setState({course: {title: event.target.value, id}});
     }
 
@@ -64,7 +58,7 @@ class CourseList extends React.Component {
     }
 
     deleteCourse(courseId) {
-        var input = window.confirm("Are you sure you want to delete this course?");
+        let input = window.confirm("Are you sure you want to delete this course?");
         if (input === true) {
             this.courseService.deleteCourse(courseId).then(() => {
                 this.findAllCourses();

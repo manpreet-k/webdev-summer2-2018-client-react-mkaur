@@ -5,7 +5,7 @@ import LessonEditor from "./LessonEditor";
 import {Route} from 'react-router-dom';
 export default class LessonTabs extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             lessonId: '',
             moduleId: '',
@@ -75,7 +75,7 @@ export default class LessonTabs extends React.Component {
     }
 
     deleteLesson(lessonId) {
-        var input = window.confirm("Are you sure you want to delete this lesson?");
+        let input = window.confirm("Are you sure you want to delete this lesson?");
         if (input === true) {
             this.lessonService.deleteLesson(lessonId).then(() => {
                 this.findAllLessonsForModule(this.state.courseId, this.state.moduleId)
@@ -90,7 +90,7 @@ export default class LessonTabs extends React.Component {
     }
 
     renderLessons() {
-        let lessons = this.state.lessons.map((lesson) => {
+        return this.state.lessons.map((lesson) => {
             return <LessonTabItem key={lesson.id}
                                   lesson={lesson}
                                   courseId={this.state.courseId}
@@ -98,7 +98,6 @@ export default class LessonTabs extends React.Component {
                                   delete={this.deleteLesson}
                                   update={this.updateLesson}/>
         });
-        return lessons;
     }
 
     render() {
