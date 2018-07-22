@@ -110,7 +110,7 @@ export default class ModuleLists extends React.Component {
     }
 
     deleteModule(moduleId) {
-        var input = window.confirm("Are you sure you want to delete this module?");
+        let input = window.confirm("Are you sure you want to delete this module?");
         if (input === true) {
             this.moduleService.deleteModule(moduleId).then(() => {
                 this.findAllModulesForCourse(this.state.courseId)
@@ -119,7 +119,7 @@ export default class ModuleLists extends React.Component {
     }
 
     renderModules() {
-        let modules = this.state.modules.map((module, index) => {
+        return this.state.modules.map((module, index) => {
             return <ModuleListItem key={module.id}
                                    index={index}
                                    courseId={this.state.courseId}
@@ -128,7 +128,6 @@ export default class ModuleLists extends React.Component {
                                    update={this.updateModule}
             />
         });
-        return modules;
     }
 
     render() {
