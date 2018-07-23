@@ -21,7 +21,8 @@ class CourseServiceClient
         var courseJson = {
             title: course.title,
             created: date.getTime(),
-            modified: date.getTime()
+            modified: date.getTime(),
+            owner: 'me'
         };
         var courseStr = JSON.stringify(courseJson);
         return fetch(COURSE_API_URL, {

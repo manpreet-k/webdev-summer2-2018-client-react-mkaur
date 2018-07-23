@@ -108,6 +108,7 @@ class CourseList extends React.Component {
                     <tr>
                         <th>Title</th>
                         <th>Owned By</th>
+                        <th>Created</th>
                         <th>Last Modified</th>
                         <th>actions</th>
                         {/*<th><i className="fa fa-sort"/></th>*/}

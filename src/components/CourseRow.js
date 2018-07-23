@@ -13,11 +13,14 @@ class CourseRow extends React.Component {
                 <td>
                     <Link to=
                               {`/course/${this.props.course.id}`}>
-                        {this.props.course.title}
+                        <i className="fa fa-file-text" />&nbsp;&nbsp;&nbsp;{this.props.course.title}
                     </Link>
                 </td>
                 <td>
-                    me
+                    {this.props.course.owner}
+                </td>
+                <td>
+                    {CourseRow.getModifiedTime(this.props.course.created)}
                 </td>
                 <td>
                     {CourseRow.getModifiedTime(this.props.course.modified)}
