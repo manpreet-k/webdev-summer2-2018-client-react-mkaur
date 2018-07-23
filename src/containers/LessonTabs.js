@@ -115,7 +115,7 @@ export default class LessonTabs extends React.Component {
 
                                 </span>
                                 <span className="col-1">
-                                    <i className="fa fa-plus wbdv-plus" onClick={this.createLesson}/>
+                                    <i className="fa fa-plus wbdv-icon-white" onClick={this.createLesson}/>
                                 </span>
                             </div>
                         </li>

@@ -84,7 +84,7 @@ class CourseList extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="form-group row bg-primary wbdv-new-course-div">
+                <div className="form-group row wbdv-new-course-div">
 
                     {/*<i className="col-sm-1 col-form-label fa fa-bars"/>*/}
                     <i className="col-sm-1 col-form-label"/>

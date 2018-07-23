@@ -144,9 +144,9 @@ export default class ModuleLists extends React.Component {
 
     render() {
         return (
-            <div className="wbdv-module-list">
-                <h2>&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseTitle}</h2>
-
+            <div className="wbdv-padding-0">
+                <h2 className="wbdv-lesson-tabs">&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseTitle}</h2>
+                <div className="wbdv-padding-5">
 
                 <div className="row">
                     <div className="col-10">
@@ -176,6 +176,7 @@ export default class ModuleLists extends React.Component {
                         )}
                     </Droppable>
                 </DragDropContext>
+                </div>
             </div>
         );
     }

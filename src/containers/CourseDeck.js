@@ -85,7 +85,7 @@ export default class CourseDeck extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="form-group row bg-primary wbdv-new-course-div">
+                <div className="form-group row wbdv-new-course-div">
                     <i className="col-sm-1 col-form-label fa fa-bars"/>
                     <div className="col-sm-8">
                         <input className="form-control"
