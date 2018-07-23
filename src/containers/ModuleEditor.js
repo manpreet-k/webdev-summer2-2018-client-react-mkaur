@@ -33,12 +33,10 @@ class ModuleEditor extends React.Component {
 
     render() {
         return (
-            <div>
-                <nav className="navbar navbar-expand-lg justify-content-between">
+                <nav className="wbdv-padding-0 navbar-expand-lg justify-content-between">
                     <LessonTabs courseId={this.props.match.params.courseId}
                                 moduleId={this.props.match.params.moduleId}/>
                 </nav>
-            </div>
         );
     }
 }

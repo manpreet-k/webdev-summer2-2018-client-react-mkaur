@@ -120,7 +120,7 @@ export default class TopicPills extends React.Component {
                     <span className="col-11">
                     <input onChange={this.setTopicTitle}
                            value={this.state.topic.title}
-                           placeholder="New Topic"
+                           placeholder="Topic Title"
                            className="form-control"/>
                     </span>
                             <span className="col-1">

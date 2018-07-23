@@ -13,7 +13,8 @@
 
 .wbdv-lesson-tabs{
     padding: 5px;
-    background-color: #007BFF;
+    background-color: #004d99;
+    color: white;
 }
 
 .wbdv-topic-pills{
@@ -38,7 +39,7 @@
 }
 
 .wbdv-pill-item{
-    background-color: #BFDEFF;
+    background-color: #a8a8a8;
     border: 2px solid #61686D;
 }
 .wbdv-link {
@@ -80,13 +81,41 @@
 
 .wbdv-new-course-div{
     padding: 5px;
+    color: white;
+    background-color: #004d99;
 }
 
-.wbdv-cross{
+.wbdv-module-lesson-div{
+    color: white;
+    background-color: #004d99;
+}
+
+.wbdv-icon-small{
     font-size: 12px;
     color:white;
 }
 
-.wbdv-plus{
+.wbdv-icon-white{
     color:white;
 }
+
+.wbdv-bg{
+    background-color: #eef7fa;
+    color: #004d99;
+}
+
+.wbdv-padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+.wbdv-row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.wbdv-padding-5{
+    padding: 5px;
+}
+
+

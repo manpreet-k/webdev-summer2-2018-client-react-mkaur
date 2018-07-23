@@ -12,7 +12,7 @@ export default class ModuleLists extends React.Component {
         this.state = {
             courseId: '',
             courseTitle:'',
-            module: {title: ''},
+            module: {title: '', id:''},
             modules: []
         };
         this.setCourseId = this.setCourseId.bind(this);
@@ -23,6 +23,8 @@ export default class ModuleLists extends React.Component {
         this.onDragEnd = this.onDragEnd.bind(this);
         this.setCourseTitle = this.setCourseTitle.bind(this);
         this.findCourseById = this.findCourseById.bind(this);
+        this.editModule = this.editModule.bind(this);
+        this.updateModule = this.updateModule.bind(this);
     }
 
     // a little function to help us with reordering the result
@@ -62,7 +64,7 @@ export default class ModuleLists extends React.Component {
     }
 
     setModuleTitle(event) {
-        this.setState({module: {title: event.target.value}});
+        this.setState({module: {title: event.target.value, id:this.state.module.id}});
     }
 
     componentDidMount() {
@@ -90,13 +92,19 @@ export default class ModuleLists extends React.Component {
     }
 
     setModules(modules) {
-        this.setState({module: {title: ''}});
+        this.setState({module: {title: '', id:0}});
         this.setState({modules: modules})
+    }
+
+    updateModule(){
+        this.moduleService.updateModule(this.state.module.id, this.state.module).then(() => {
+            this.findAllModulesForCourse(this.state.courseId);
+        });
     }
 
     createModule() {
         if (undefined === this.state.module || '' === this.state.module.title) {
-            this.setState({module: {title: 'New Module'}}, function () {
+            this.setState({module: {title: 'New Module', id:0}}, function () {
                 this.createModuleServiceCall();
             });
         }
@@ -118,6 +126,10 @@ export default class ModuleLists extends React.Component {
         }
     }
 
+    editModule(id, module){
+        this.setState({module: {title:module.title, id: id}});
+    }
+
     renderModules() {
         return this.state.modules.map((module, index) => {
             return <ModuleListItem key={module.id}
@@ -125,26 +137,27 @@ export default class ModuleLists extends React.Component {
                                    courseId={this.state.courseId}
                                    module={module}
                                    delete={this.deleteModule}
-                                   update={this.updateModule}
+                                   update={this.editModule}
             />
         });
     }
 
     render() {
         return (
-            <div className="wbdv-module-list">
-                <h2>&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseTitle}</h2>
-
+            <div className="wbdv-padding-0">
+                <h2 className="wbdv-lesson-tabs">&nbsp;&nbsp;&nbsp;&nbsp;Modules for {this.state.courseTitle}</h2>
+                <div className="wbdv-padding-5">
 
                 <div className="row">
-                    <div className="col-11">
+                    <div className="col-10">
                         <input onChange={this.setModuleTitle}
                                value={this.state.module.title}
-                               placeholder="New Module"
+                               placeholder="Module Title"
                                className="form-control"/>
                     </div>
-                    <div className="col-1">
-                        <i className="fa fa-plus" onClick={this.createModule}/>
+                    <div className="col-2">
+                        <i className="float-left fa fa-plus" onClick={this.createModule}/>
+                        <i className="float-right fa fa-check" onClick={this.updateModule}/>
                     </div>
                 </div>
 
@@ -163,6 +176,7 @@ export default class ModuleLists extends React.Component {
                         )}
                     </Droppable>
                 </DragDropContext>
+                </div>
             </div>
         );
     }
