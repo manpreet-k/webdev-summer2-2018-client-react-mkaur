@@ -45,7 +45,7 @@ class WidgetList extends React.Component {
 
     render() {
         return (
-            <div className="tab-content">
+            <div>
                 <div>
                     <button className="float-right btn-success" disabled={this.props.preview} onClick={() => this.saveAllWidgets()}>
                         Save
