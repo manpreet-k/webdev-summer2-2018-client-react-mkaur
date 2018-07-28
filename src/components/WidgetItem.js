@@ -66,18 +66,23 @@ const WidgetItemComp = ({widget, widgets, preview, index,
                     <div>
                         {widget.classname === 'Paragraph' && <ParagraphWidget widget={widget}
                                                                               preview={preview}
+                                                                              widgets={widgets}
                                                                               updateWidget={updateWidget}/>}
                         {widget.classname === 'List' && <ListWidget widget={widget}
                                                                     preview={preview}
+                                                                    widgets={widgets}
                                                                     updateWidget={updateWidget}/>}
                         {widget.classname === 'Heading' && <HeadingWidget widget={widget}
                                                                           preview={preview}
+                                                                          widgets={widgets}
                                                                           updateWidget={updateWidget}/>}
                         {widget.classname === 'Link' && <LinkWidget widget={widget}
                                                                     preview={preview}
+                                                                    widgets={widgets}
                                                                     updateWidget={updateWidget}/>}
                         {widget.classname === 'Image' && <ImageWidget widget={widget}
                                                                       preview={preview}
+                                                                      widgets={widgets}
                                                                       updateWidget={updateWidget}/>}
                     </div>
                 </div>

@@ -37,7 +37,7 @@ class WidgetList extends React.Component {
 
     createNewWidget() {
         this.props.createWidget({
-            name: 'New Widget',
+            name: '',
             text: '',
             position: this.props.widgets.length,
             id: this.props.widgets.length + 1,

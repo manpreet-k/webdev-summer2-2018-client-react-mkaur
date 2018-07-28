@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import * as widgetActions from '../actions/WidgetActions'
 
 export const HeadingWidget =
-    ({widget, preview, updateWidget}) => {
+    ({widget, preview, widgets, updateWidget}) => {
         let text;
         let size;
         let name;
@@ -53,8 +54,10 @@ export const HeadingWidget =
                        placeholder="Widget Name"
                        value={widget.name}
                        onChange={() => {
-                           widget.name = name.value;
-                           updateWidget(widget)
+                           if(widgetActions.validateWidgetName(widgets, name.value, widget.id)){
+                               widget.name = name.value;
+                               updateWidget(widget)
+                           }
                        }}/>
                 </div>
                 <h4>Preview</h4>

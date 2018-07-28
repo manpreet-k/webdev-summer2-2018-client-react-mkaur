@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const ListWidget = ({widget, preview, updateWidget}) => {
+export const ListWidget =
+    ({widget, preview, widgets, updateWidget}) => {
     let text;
     let ordered;
     let name;

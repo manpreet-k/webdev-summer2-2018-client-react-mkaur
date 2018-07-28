@@ -118,3 +118,11 @@ export const onDragEnd = (dispatch, result, widgets) => {
     })
 }
 
+export const validateWidgetName = (widgets, name, id) => {
+    let found = widgets.find(widget => {
+        return (widget.name === name && widget.id !== id)
+    });
+
+    return (found === undefined);
+}
+

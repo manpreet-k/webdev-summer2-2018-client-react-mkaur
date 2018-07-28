@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const LinkWidget =
-    ({widget, preview, updateWidget}) => {
+    ({widget, preview, widgets, updateWidget}) => {
         let text;
         let url;
         let name;

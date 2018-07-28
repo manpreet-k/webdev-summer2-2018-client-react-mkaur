@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const ParagraphWidget =
-    ({widget, preview, updateWidget}) => {
+    ({widget, preview, widgets, updateWidget}) => {
         let text;
         let name;
         return (
