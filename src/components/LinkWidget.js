@@ -1,34 +1,43 @@
 import React from 'react'
 
 export const LinkWidget =
-    ({widget, updateWidget}) =>
-    {
+    ({widget, updateWidget}) => {
         let text;
         let url;
-        return(
+        return (
             <div>
-                <h3>Link Widget</h3>
                 <label htmlFor="text">Link Text</label>
-                <input onChange={() => {
-                    widget.text = text.value;
-                    updateWidget(widget)
-                }}
-                       ref={node => text = node}
+                <input ref={node => text = node}
                        className="form-control"
                        id="text"
-                       placeholder="Link Text"/>
+                       placeholder="Link Text"
+                       onChange={() => {
+                           widget.text = text.value;
+                           updateWidget(widget)
+                       }}/>
                 <label htmlFor="url">Link Text</label>
-                <input onChange={() => {
-                    widget.href = url.value;
-                    updateWidget(widget)
-                }}
-                       ref={node => url = node}
+                <input ref={node => url = node}
                        className="form-control"
                        id="url"
-                       placeholder="Link URL"/>
-
+                       placeholder="Link URL"
+                       onChange={() => {
+                           widget.href = url.value;
+                           updateWidget(widget)
+                       }}/>
+                <label for="widgetname">
+                    Widget Name
+                </label>
+                <input ref={node => text = node}
+                       className="form-control"
+                       id="widgetname"
+                       placeholder="Widget Name"
+                       value={widget.name}
+                       onChange={() => {
+                           widget.name = text.value;
+                           updateWidget(widget)
+                       }}/>
                 <h4>Preview</h4>
-                {widget.href !== '' && <a href ={widget.href}> Go to link </a>}
+                {widget.href !== '' && <a href={widget.href}> Go to link </a>}
 
             </div>
         )

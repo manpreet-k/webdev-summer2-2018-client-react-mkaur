@@ -3,9 +3,8 @@ import React from 'react'
 export const ListWidget = ({widget, updateWidget}) => {
     let text
     let ordered
-    return(
+    return (
         <div>
-            <h3>List Widget</h3>
             <textarea ref={node => text = node}
                       className="form-control"
                       onChange={() => {
@@ -13,15 +12,30 @@ export const ListWidget = ({widget, updateWidget}) => {
                           updateWidget(widget)
                       }}
                       value={widget.listItems}/>
-            <label><input ref={node => ordered = node}
-                          onClick={() => {
-                              widget.ordered = ordered.checked
-                              updateWidget(widget)
-                          }}
-                          checked={widget.ordered}
-                          type="checkbox"/> Ordered</label>
+            <label>
+                <input ref={node => ordered = node}
+                       onClick={() => {
+                           widget.ordered = ordered.checked
+                           updateWidget(widget)
+                       }}
+                       checked={widget.ordered}
+                       type="checkbox"/>
+                Ordered
+            </label>
+            <label for="widgetname">
+                Widget Name
+            </label>
+            <input ref={node => text = node}
+                   className="form-control"
+                   id="widgetname"
+                   placeholder="Widget Name"
+                   value={widget.name}
+                   onChange={() => {
+                       widget.name = text.value;
+                       updateWidget(widget)
+                   }}/>
             <h4>Preview</h4>
-            { !widget.ordered &&
+            {!widget.ordered &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
@@ -35,7 +49,6 @@ export const ListWidget = ({widget, updateWidget}) => {
                 ))}
             </ol>
             }
-
         </div>
     );
 }
