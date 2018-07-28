@@ -69,3 +69,25 @@ export const moveWidgets = (widgets, old_index, new_index) => {
     widgets.splice(new_index, 0, widgets.splice(old_index, 1)[0]);
     return widgets;
 };
+
+export const disableUpButton = (widgets, wid) => {
+    let i;
+    let newwidgets = widgets.slice();
+    for (i = 0; i < newwidgets.length; i++) {
+        if(newwidgets[i].id === wid){
+            break;
+        }
+    }
+    return (i === 0);
+}
+
+export const disableDownButton = (widgets, wid) => {
+    let i;
+    let newwidgets = widgets.slice();
+    for (i = 0; i < newwidgets.length; i++) {
+        if(newwidgets[i].id === wid){
+            break;
+        }
+    }
+    return (i === newwidgets.length-1);
+}

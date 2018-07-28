@@ -31,12 +31,14 @@ const WidgetItemComp = ({widget, widgets, preview, deleteWidget, updateWidgetTyp
                 </div>
                 <div className="col-1">
                     <button className="btn btn-warning"
+                            disabled={widgetActions.disableUpButton(widgets, widget.id)}
                             onClick={() => moveWidgetUp(widget.id, widgets)}>
                         <i className="fa fa-chevron-up"/>
                     </button>
                 </div>
                 <div className="col-1">
                     <button className="btn btn-warning"
+                            disabled={widgetActions.disableDownButton(widgets, widget.id)}
                             onClick={() => moveWidgetDown(widget.id, widgets)}>
                         <i className="fa fa-chevron-down"/>
                     </button>
