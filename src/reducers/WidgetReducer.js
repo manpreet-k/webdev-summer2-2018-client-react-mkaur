@@ -15,18 +15,11 @@ export const WidgetReducer = (
     switch (action.type) {
 
         case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
-            newState = Object.assign({}, state)
-            newState.widgets = action.widgets
-            return newState
-
         case constants.SET_ALL_WIDGETS_FOR_TOPIC:
-            newState = Object.assign({}, state)
-            newState.widgets = action.widgets
-            return newState;
-
         case constants.SAVE_ALL_WIDGETS:
-            WidgetAction.saveAllWidgets(action.topicId, state.widgets);
-            return state;
+            newState = Object.assign({}, state)
+            newState.widgets = action.widgets;
+            return newState
 
         case constants.DELETE_WIDGET:
             newState = Object.assign({}, state);

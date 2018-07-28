@@ -15,7 +15,7 @@ class WidgetList extends React.Component {
     }
 
     saveAllWidgets() {
-        this.props.saveWidgets(this.state.topicId);
+        this.props.saveWidgets(this.state.topicId, this.props.widgets);
     }
 
     componentWillReceiveProps(newProps) {
@@ -35,6 +35,7 @@ class WidgetList extends React.Component {
             text: '',
             position: this.props.widgets.length,
             id: this.props.widgets.length + 1,
+            //id: Math.floor((Math.random() * 100) + 1),
             classname: 'Heading',
             size: '1',
             src: '',
@@ -92,16 +93,17 @@ const stateToPropertyMapper = state => (
 
 const dispatcherToPropertyMapper = dispatch => (
     {
-        saveWidgets: (topicId) => dispatch({
-            type: constants.SAVE_ALL_WIDGETS,
-            topicId: topicId
-        }),
+        saveWidgets: (topicId, widgets) =>
+            widgetActions.saveAllWidgets(dispatch, topicId, widgets),
+
         createWidget: (w) => dispatch({
             type: constants.CREATE_WIDGET,
             widget: w
         }),
+
         findAllWidgetsForTopic: (topicId) =>
             widgetActions.findAllWidgetsForTopic(dispatch, topicId),
+
         updatedPreview: (value) => dispatch({
             type: constants.UPDATE_PREVIEW,
             value: value

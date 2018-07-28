@@ -14,14 +14,16 @@ export const findAllWidgetsForTopic = (dispatch, topicId) => {
 
 };
 
-export const saveAllWidgets = (topicId, widgets) => {
+export const saveAllWidgets = (dispatch, topicId, widgets) => {
     let widgetService = WidgetServiceClient.instance;
     if ('' === topicId) {
         return [];
     }
 
     widgetService.saveAllWidgets(topicId, widgets)
-        .then(function (widgets) {
-            return widgets;
-        })
+        .then(widgets => dispatch({
+            type: constants.SAVE_ALL_WIDGETS,
+            widgets: widgets
+        }))
+        .catch((e) => console.log(e))
 };
