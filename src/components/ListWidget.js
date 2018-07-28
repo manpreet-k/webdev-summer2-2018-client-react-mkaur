@@ -1,11 +1,12 @@
 import React from 'react'
 
-export const ListWidget = ({widget, updateWidget}) => {
+export const ListWidget = ({widget, preview, updateWidget}) => {
     let text;
     let ordered;
     let name;
     return (
         <div>
+            <div hidden={preview}>
             <textarea ref={node => text = node}
                       className="form-control"
                       onChange={() => {
@@ -42,6 +43,7 @@ export const ListWidget = ({widget, updateWidget}) => {
                        widget.name = name.value;
                        updateWidget(widget)
                    }}/>
+            </div>
             <h4>Preview</h4>
             {widget.listType === 'UNORDERED' &&
             <ul>

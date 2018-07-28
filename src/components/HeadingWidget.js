@@ -1,12 +1,13 @@
 import React from 'react'
 
 export const HeadingWidget =
-    ({widget, updateWidget}) => {
+    ({widget, preview, updateWidget}) => {
         let text;
         let size;
         let name;
         return (
             <div>
+                <div hidden={preview}>
                 <label htmlFor="text">
                     Heading Text
                 </label>
@@ -55,6 +56,7 @@ export const HeadingWidget =
                            widget.name = name.value;
                            updateWidget(widget)
                        }}/>
+                </div>
                 <h4>Preview</h4>
                 {widget.size === '1' && <h1>{widget.text}</h1>}
                 {widget.size === '2' && <h2>{widget.text}</h2>}

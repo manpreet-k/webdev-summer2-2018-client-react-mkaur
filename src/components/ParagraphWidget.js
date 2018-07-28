@@ -1,11 +1,12 @@
 import React from 'react'
 
 export const ParagraphWidget =
-    ({widget, updateWidget}) => {
+    ({widget, preview, updateWidget}) => {
         let text;
         let name;
         return (
             <div>
+                <div hidden={preview}>
                 <label htmlFor="text">
                     Paragraph Text
                 </label>
@@ -30,6 +31,7 @@ export const ParagraphWidget =
                            widget.name = name.value;
                            updateWidget(widget)
                        }}/>
+                </div>
                 <h4>Preview</h4>
                 <textarea disabled="true" className="form-control"
                           value = {widget.text} />

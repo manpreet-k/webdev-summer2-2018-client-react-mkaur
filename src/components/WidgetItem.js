@@ -14,7 +14,7 @@ const WidgetItemComp = ({widget, widgets, preview, deleteWidget, updateWidgetTyp
         <li className="wbdv-margin-2 form-control">
             <div className="form-row">
                 <div className="col-7">
-                    <h3>{widget.classname} {widget.id} Widget</h3>
+                    <h3>{widget.classname} Widget</h3>
                 </div>
                 <div className="col-2">
                     <select ref={input => widgetType = input}
@@ -51,11 +51,21 @@ const WidgetItemComp = ({widget, widgets, preview, deleteWidget, updateWidgetTyp
                 </div>
             </div>
             <div>
-                {widget.classname === 'Paragraph' && <ParagraphWidget widget={widget} updateWidget={updateWidget}/>}
-                {widget.classname === 'List' && <ListWidget widget={widget} updateWidget={updateWidget}/>}
-                {widget.classname === 'Heading' && <HeadingWidget widget={widget} updateWidget={updateWidget}/>}
-                {widget.classname === 'Link' && <LinkWidget widget={widget} updateWidget={updateWidget}/>}
-                {widget.classname === 'Image' && <ImageWidget widget={widget} updateWidget={updateWidget}/>}
+                {widget.classname === 'Paragraph' && <ParagraphWidget widget={widget}
+                                                                      preview={preview}
+                                                                      updateWidget={updateWidget}/>}
+                {widget.classname === 'List' && <ListWidget widget={widget}
+                                                            preview={preview}
+                                                            updateWidget={updateWidget}/>}
+                {widget.classname === 'Heading' && <HeadingWidget widget={widget}
+                                                                  preview={preview}
+                                                                  updateWidget={updateWidget}/>}
+                {widget.classname === 'Link' && <LinkWidget widget={widget}
+                                                            preview={preview}
+                                                            updateWidget={updateWidget}/>}
+                {widget.classname === 'Image' && <ImageWidget widget={widget}
+                                                              preview={preview}
+                                                              updateWidget={updateWidget}/>}
             </div>
         </li>
     )

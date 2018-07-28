@@ -1,12 +1,13 @@
 import React from 'react'
 
 export const LinkWidget =
-    ({widget, updateWidget}) => {
+    ({widget, preview, updateWidget}) => {
         let text;
         let url;
         let name;
         return (
             <div>
+                <div hidden={preview}>
                 <label htmlFor="text">Link Text</label>
                 <input ref={node => text = node}
                        className="form-control"
@@ -39,6 +40,7 @@ export const LinkWidget =
                            widget.name = name.value;
                            updateWidget(widget)
                        }}/>
+                </div>
                 <h4>Preview</h4>
                 {widget.href !== '' && <a href={widget.href}> {widget.text} </a>}
 

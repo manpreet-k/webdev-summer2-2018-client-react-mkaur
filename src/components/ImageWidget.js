@@ -1,11 +1,12 @@
 import React from 'react'
 
 export const ImageWidget =
-    ({widget, updateWidget}) => {
+    ({widget, preview, updateWidget}) => {
         let text;
         let url;
         return (
             <div>
+                <div hidden={preview}>
                 <label htmlFor="url">
                     Image URL
                 </label>
@@ -29,6 +30,7 @@ export const ImageWidget =
                            widget.name = text.value;
                            updateWidget(widget)
                        }}/>
+                </div>
                 <h4>Preview</h4>
                 <img src={widget.src}/>
             </div>
