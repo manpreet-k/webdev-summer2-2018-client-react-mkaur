@@ -70,7 +70,7 @@ class WidgetList extends React.Component {
                     </button>
                 </div>
             </div>
-                <ul className="wbdv-margin-5 list-group">
+                <ul className="wbdv-margin-5 wbdv-bg list-group">
                     {this.props.widgets.map(widget => (
                         <WidgetItem widget={widget}
                                     preview={this.props.preview}
