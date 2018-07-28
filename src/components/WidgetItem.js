@@ -6,14 +6,15 @@ import {LinkWidget} from './LinkWidget';
 import {ImageWidget} from './ImageWidget';
 import {HeadingWidget} from "./HeadingWidget";
 import {ListWidget} from "./ListWidget";
+import * as widgetActions from "../actions/WidgetActions";
 
-const WidgetItemComp = ({widget, deleteWidget, updateWidgetType, updateWidget}) => {
+const WidgetItemComp = ({widget, widgets, preview, deleteWidget, updateWidgetType, updateWidget, moveWidgetUp, moveWidgetDown}) => {
     let widgetType;
     return (
         <li className="wbdv-margin-2 form-control">
             <div className="form-row">
                 <div className="col-7">
-                    <h3>{widget.classname} Widget</h3>
+                    <h3>{widget.classname} {widget.id} Widget</h3>
                 </div>
                 <div className="col-2">
                     <select ref={input => widgetType = input}
@@ -30,13 +31,13 @@ const WidgetItemComp = ({widget, deleteWidget, updateWidgetType, updateWidget}) 
                 </div>
                 <div className="col-1">
                     <button className="btn btn-warning"
-                            onClick={() => deleteWidget(widget.position)}>
+                            onClick={() => moveWidgetUp(widget.id, widgets)}>
                         <i className="fa fa-chevron-up"/>
                     </button>
                 </div>
                 <div className="col-1">
                     <button className="btn btn-warning"
-                            onClick={() => deleteWidget(widget.position)}>
+                            onClick={() => moveWidgetDown(widget.id, widgets)}>
                         <i className="fa fa-chevron-down"/>
                     </button>
                 </div>
@@ -71,12 +72,16 @@ const dispatcherToPropertyMapper = dispatch => ({
         type: constants.UPDATE_WIDGET_TYPE,
         widgetId: wid,
         widgetType: widgetType
-    })
+    }),
+    moveWidgetUp: (wid, widgets) =>
+        widgetActions.moveWidgetUp(dispatch, widgets, wid),
+    moveWidgetDown: (wid, widgets) =>
+        widgetActions.moveWidgetDown(dispatch, widgets, wid),
 })
 
 const stateToPropertyMapper = state => ({
     widgets: state.widgets,
-    preview: state.preview
+    preview: state.preview,
 })
 
 const WidgetItem =

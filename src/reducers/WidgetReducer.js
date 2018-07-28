@@ -17,8 +17,11 @@ export const WidgetReducer = (
         case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
         case constants.SET_ALL_WIDGETS_FOR_TOPIC:
         case constants.SAVE_ALL_WIDGETS:
+        case constants.MOVE_WIDGET_UP:
+        case constants.MOVE_WIDGET_DOWN:
             newState = Object.assign({}, state)
             newState.widgets = action.widgets;
+            // newState.widgets.sort((a, b) => parseInt(b.position) - parseFloat(a.position));
             return newState
 
         case constants.DELETE_WIDGET:
