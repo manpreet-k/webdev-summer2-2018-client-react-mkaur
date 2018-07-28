@@ -7,12 +7,12 @@ export const ImageWidget =
         return (
             <div>
                 <label htmlFor="url">
-                    Image Text
+                    Image URL
                 </label>
                 <input ref={node => url = node}
                        className="form-control"
                        id="url"
-                       placeholder="Image Text"
+                       placeholder="Image URL"
                        onChange={() => {
                            widget.src = url.value;
                            updateWidget(widget)

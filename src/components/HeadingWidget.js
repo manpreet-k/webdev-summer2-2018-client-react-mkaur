@@ -4,6 +4,7 @@ export const HeadingWidget =
     ({widget, updateWidget}) => {
         let text;
         let size;
+        let name;
         return (
             <div>
                 <label htmlFor="text">
@@ -45,13 +46,13 @@ export const HeadingWidget =
                 <label for="widgetname">
                     Widget Name
                 </label>
-                <input ref={node => text = node}
+                <input ref={node => name = node}
                        className="form-control"
                        id="widgetname"
                        placeholder="Widget Name"
                        value={widget.name}
                        onChange={() => {
-                           widget.name = text.value;
+                           widget.name = name.value;
                            updateWidget(widget)
                        }}/>
                 <h4>Preview</h4>

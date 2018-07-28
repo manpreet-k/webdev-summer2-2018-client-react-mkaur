@@ -1,8 +1,9 @@
 import React from 'react'
 
 export const ListWidget = ({widget, updateWidget}) => {
-    let text
-    let ordered
+    let text;
+    let ordered;
+    let name;
     return (
         <div>
             <textarea ref={node => text = node}
@@ -12,42 +13,56 @@ export const ListWidget = ({widget, updateWidget}) => {
                           updateWidget(widget)
                       }}
                       value={widget.listItems}/>
-            <label>
-                <input ref={node => ordered = node}
-                       onClick={() => {
-                           widget.ordered = ordered.checked
-                           updateWidget(widget)
-                       }}
-                       checked={widget.ordered}
-                       type="checkbox"/>
-                Ordered
+            <label htmlFor="type">
+                List Type
             </label>
+            <select ref={node => ordered = node}
+                    className="form-control"
+                    id="type"
+                    onChange={() => {
+                        widget.listType = ordered.value;
+                        updateWidget(widget)
+                    }}>
+                <option value="UNORDERED">
+                    Unordered List
+                </option>
+                <option value="ORDERED">
+                    Ordered List
+                </option>
+            </select>
             <label for="widgetname">
                 Widget Name
             </label>
-            <input ref={node => text = node}
+            <input ref={node => name = node}
                    className="form-control"
                    id="widgetname"
                    placeholder="Widget Name"
                    value={widget.name}
                    onChange={() => {
-                       widget.name = text.value;
+                       widget.name = name.value;
                        updateWidget(widget)
                    }}/>
             <h4>Preview</h4>
-            {!widget.ordered &&
+            {widget.listType === 'UNORDERED' &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
                 ))}
             </ul>
             }
-            {widget.ordered &&
+            {widget.listType === 'ORDERED' &&
             <ol>
                 {widget.listItems.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
                 ))}
             </ol>
+            }
+            {widget.listType === "" &&
+            <ul>
+                {widget.listItems.split('\n').map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
             }
         </div>
     );

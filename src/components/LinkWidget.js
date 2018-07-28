@@ -4,6 +4,7 @@ export const LinkWidget =
     ({widget, updateWidget}) => {
         let text;
         let url;
+        let name;
         return (
             <div>
                 <label htmlFor="text">Link Text</label>
@@ -15,7 +16,7 @@ export const LinkWidget =
                            widget.text = text.value;
                            updateWidget(widget)
                        }}/>
-                <label htmlFor="url">Link Text</label>
+                <label htmlFor="url">Link URL</label>
                 <input ref={node => url = node}
                        className="form-control"
                        id="url"
@@ -27,17 +28,17 @@ export const LinkWidget =
                 <label for="widgetname">
                     Widget Name
                 </label>
-                <input ref={node => text = node}
+                <input ref={node => name = node}
                        className="form-control"
                        id="widgetname"
                        placeholder="Widget Name"
                        value={widget.name}
                        onChange={() => {
-                           widget.name = text.value;
+                           widget.name = name.value;
                            updateWidget(widget)
                        }}/>
                 <h4>Preview</h4>
-                {widget.href !== '' && <a href={widget.href}> Go to link </a>}
+                {widget.href !== '' && <a href={widget.href}> {widget.text} </a>}
 
             </div>
         )
