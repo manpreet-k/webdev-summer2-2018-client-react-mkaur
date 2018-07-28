@@ -66,14 +66,14 @@ class WidgetList extends React.Component {
                                    }}/>
                             Preview
                         </label>
-                        <button className="wbdv-margin-5 btn-danger btn"
+                        <button className="wbdv-margin-5 btn-info btn"
                                 onClick={() => this.createNewWidget()}>
                             <i className="fa fa-plus-circle"/>
                         </button>
                         <button className="wbdv-margin-5 btn btn-success"
                                 disabled={this.props.preview}
                                 onClick={() => this.saveAllWidgets()}>
-                            Save
+                            <i className="fa fa-save"/>
                         </button>
                     </div>
                 </div>
