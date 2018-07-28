@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import WidgetItem from '../components/WidgetItem';
 import * as constants from '../constants/WidgetConstants';
 import * as widgetActions from '../actions/WidgetActions';
+import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 
 class WidgetList extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class WidgetList extends React.Component {
         };
         this.saveAllWidgets = this.saveAllWidgets.bind(this);
         this.createNewWidget = this.createNewWidget.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
     }
 
     saveAllWidgets() {
@@ -27,6 +29,10 @@ class WidgetList extends React.Component {
 
     componentDidMount() {
         this.setState({topicId: this.props.topicId});
+    }
+
+    onDragEnd(result) {
+        this.props.dragEnd(result, this.props.widgets);
     }
 
     createNewWidget() {
@@ -50,35 +56,58 @@ class WidgetList extends React.Component {
 
             <div className="wbdv-padding-5">
                 <div className="wbdv-widget-list-top">
-                <div >
-                    <label>
-                        <input type="checkbox"
-                               ref={node => previewChecked = node}
-                               checked={this.props.preview}
-                               onClick={() => {
-                                   this.props.updatedPreview(previewChecked.checked);
-                               }}/>
-                        Preview
-                    </label>
-                    <button className="wbdv-margin-5 btn-danger btn"
-                            onClick={() => this.createNewWidget()}>
-                        <i className="fa fa-plus-circle"/>
-                    </button>
-                    <button className="wbdv-margin-5 btn btn-success"
-                            disabled={this.props.preview}
-                            onClick={() => this.saveAllWidgets()}>
-                        Save
-                    </button>
+                    <div>
+                        <label>
+                            <input type="checkbox"
+                                   ref={node => previewChecked = node}
+                                   checked={this.props.preview}
+                                   onClick={() => {
+                                       this.props.updatedPreview(previewChecked.checked);
+                                   }}/>
+                            Preview
+                        </label>
+                        <button className="wbdv-margin-5 btn-danger btn"
+                                onClick={() => this.createNewWidget()}>
+                            <i className="fa fa-plus-circle"/>
+                        </button>
+                        <button className="wbdv-margin-5 btn btn-success"
+                                disabled={this.props.preview}
+                                onClick={() => this.saveAllWidgets()}>
+                            Save
+                        </button>
+                    </div>
                 </div>
-            </div>
-                <ul className="wbdv-margin-5 wbdv-bg list-group">
-                    {this.props.widgets.map(widget => (
-                        <WidgetItem widget={widget}
-                                    preview={this.props.preview}
-                                    key={widget.id}
-                        />
-                    ))}
-                </ul>
+                <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable droppableId="droppable">
+
+                        {(provided, snapshot) => (
+                            <div
+                                ref={provided.innerRef}
+                                className={snapshot.isDraggingOver ?
+                                    "wbdv-draggable-list-dragging" :
+                                    "wbdv-draggable-list"}
+                            >
+                                {this.props.widgets.map((widget, index) => (
+                                    <WidgetItem widget={widget}
+                                                preview={this.props.preview}
+                                                key={widget.id}
+                                                index={index}
+                                    />
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+
+                        {/*<ul className="wbdv-margin-5 wbdv-bg list-group">*/}
+                        {/*{this.props.widgets.map(widget => (*/}
+                        {/*<WidgetItem widget={widget}*/}
+                        {/*preview={this.props.preview}*/}
+                        {/*key={widget.id}*/}
+                        {/*/>*/}
+                        {/*))}*/}
+                        {/*</ul>*/}
+                    </Droppable>
+                </DragDropContext>
             </div>
         )
     }
@@ -107,7 +136,10 @@ const dispatcherToPropertyMapper = dispatch => (
         updatedPreview: (value) => dispatch({
             type: constants.UPDATE_PREVIEW,
             value: value
-        })
+        }),
+
+        dragEnd: (result, widgets) =>
+            widgetActions.onDragEnd(dispatch, result, widgets)
     }
 );
 

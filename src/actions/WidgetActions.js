@@ -91,3 +91,30 @@ export const disableDownButton = (widgets, wid) => {
     }
     return (i === newwidgets.length-1);
 }
+
+// a little function to help us with reordering the result
+export const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+}
+
+export const onDragEnd = (dispatch, result, widgets) => {
+    // dropped outside the list
+    if (!result.destination) {
+        return;
+    }
+
+    const newwidgets = reorder(
+        widgets,
+        result.source.index,
+        result.destination.index
+    );
+
+    dispatch({
+        type: constants.DRAG_WIDGETS_END,
+        widgets: newwidgets
+    })
+}
+
