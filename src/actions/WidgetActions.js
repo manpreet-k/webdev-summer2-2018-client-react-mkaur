@@ -19,10 +19,9 @@ export const saveAllWidgets = (topicId, widgets) => {
     if ('' === topicId) {
         return [];
     }
-        widgets.map((widget) =>
-            widgetService.createWidget(topicId, widget)
-                .then(function (widgets) {
-                    return widgets;
-                })
-        )
+
+    widgetService.saveAllWidgets(topicId, widgets)
+        .then(function (widgets) {
+            return widgets;
+        })
 };

@@ -39,8 +39,7 @@ class WidgetList extends React.Component {
             size: '1',
             src: '',
             href: '',
-            listItems: '',
-            listType: ''
+            listItems: ''
         })
     }
 

@@ -31,6 +31,21 @@ export default class WidgetServiceClient {
             .catch(e => console.log(e));
     }
 
+    saveAllWidgets(topicId, widgets){
+        var widgetsStr = JSON.stringify(widgets);
+        return fetch(TOPIC_API_URL + '/' + topicId + '/widgets', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: widgetsStr
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(e => console.log(e));
+    }
+
     deleteWidget(id) {
         return fetch(WIDGET_API_URL + '/' + id, {
             method: 'delete',
