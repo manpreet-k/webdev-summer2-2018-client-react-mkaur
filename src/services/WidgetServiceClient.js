@@ -1,9 +1,6 @@
 let _singleton = Symbol();
-// const TOPIC_API_URL = 'https://webdev-summer2-2018-mkaur.herokuapp.com/api/topic';
-// const WIDGET_API_URL = 'https://webdev-summer2-2018-mkaur.herokuapp.com/api/widget';
-
-const TOPIC_API_URL = 'http://localhost:8080/api/topic';
-const WIDGET_API_URL = 'http://localhost:8080/api/widget';
+const TOPIC_API_URL = 'https://webdev-summer2-2018-mkaur.herokuapp.com/api/topic';
+const WIDGET_API_URL = 'https://webdev-summer2-2018-mkaur.herokuapp.com/api/widget';
 
 export default class WidgetServiceClient {
     constructor(singletonToken) {
