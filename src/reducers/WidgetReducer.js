@@ -65,6 +65,11 @@ export const WidgetReducer = (
                 });
             return newState;
 
+        case constants.UPDATE_PREVIEW:
+            newState = Object.assign({}, state);
+            newState.preview = action.value;
+            return newState;
+
         default:
             return state
     }

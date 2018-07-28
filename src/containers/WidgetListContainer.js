@@ -20,7 +20,7 @@ class WidgetList extends React.Component {
 
     componentWillReceiveProps(newProps) {
         this.setState({topicId: newProps.topicId});
-        if(this.props.topicId !== newProps.topicId){
+        if (this.props.topicId !== newProps.topicId) {
             this.props.findAllWidgetsForTopic(newProps.topicId);
         }
     }
@@ -29,49 +29,55 @@ class WidgetList extends React.Component {
         this.setState({topicId: this.props.topicId});
     }
 
-    createNewWidget(){
+    createNewWidget() {
         this.props.createWidget({
-            name:'new widget' + this.props.widgets.length,
-            text:'',
+            name: 'new widget' + this.props.widgets.length,
+            text: '',
             position: this.props.widgets.length,
             id: this.props.widgets.length + 1,
             classname: 'Heading',
             size: '1',
             src: '',
-            href:'',
-            listItems:''
+            href: '',
+            listItems: ''
         })
     }
 
     render() {
+        let previewChecked;
         return (
-            <div>
-                <div>
-                    <button className="float-right btn-success" disabled={this.props.preview} onClick={() => this.saveAllWidgets()}>
+
+            <div className="wbdv-padding-5">
+                <div className="wbdv-widget-list-top">
+                <div >
+                    <label>
+                        <input type="checkbox"
+                               ref={node => previewChecked = node}
+                               checked={this.props.preview}
+                               onClick={() => {
+                                   this.props.updatedPreview(previewChecked.checked);
+                               }}/>
+                        Preview
+                    </label>
+                    <button className="wbdv-margin-5 btn-danger btn"
+                            onClick={() => this.createNewWidget()}>
+                        <i className="fa fa-plus-circle"/>
+                    </button>
+                    <button className="wbdv-margin-5 btn btn-success"
+                            disabled={this.props.preview}
+                            onClick={() => this.saveAllWidgets()}>
                         Save
                     </button>
                 </div>
-                <div>
-                    <button className="float-right btn-info" disabled={this.props.preview} onClick={() => this.saveAllWidgets}>
-                        Preview
-                    </button>
-                </div>
-                <div>
-                    <button onClick={() => this.createNewWidget()}>
-                        Add Widget
-                    </button>
-                </div>
-                <div>
-                <ul>
+            </div>
+                <ul className="wbdv-margin-5 list-group">
                     {this.props.widgets.map(widget => (
                         <WidgetItem widget={widget}
-                                             preview={this.props.preview}
-                                             key={widget.id}
+                                    preview={this.props.preview}
+                                    key={widget.id}
                         />
                     ))}
                 </ul>
-                </div>
-
             </div>
         )
     }
@@ -96,6 +102,10 @@ const dispatcherToPropertyMapper = dispatch => (
         }),
         findAllWidgetsForTopic: (topicId) =>
             widgetActions.findAllWidgetsForTopic(dispatch, topicId),
+        updatedPreview: (value) => dispatch({
+            type: constants.UPDATE_PREVIEW,
+            value: value
+        })
     }
 );
 
