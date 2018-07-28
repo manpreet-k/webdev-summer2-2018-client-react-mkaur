@@ -43,7 +43,7 @@ export const HeadingWidget =
                         Heading 4
                     </option>
                 </select>
-                <label for="widgetname">
+                <label htmlFor="widgetname">
                     Widget Name
                 </label>
                 <input ref={node => name = node}

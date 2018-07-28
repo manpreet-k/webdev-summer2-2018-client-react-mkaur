@@ -17,7 +17,7 @@ export const ImageWidget =
                            widget.src = url.value;
                            updateWidget(widget)
                        }}/>
-                <label for="widgetname">
+                <label htmlFor="widgetname">
                     Widget Name
                 </label>
                 <input ref={node => text = node}

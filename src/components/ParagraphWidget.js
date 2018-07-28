@@ -9,15 +9,16 @@ export const ParagraphWidget =
                 <label htmlFor="text">
                     Paragraph Text
                 </label>
-                <textarea onChange={() => {
-                    widget.text = text.value;
-                    updateWidget(widget)
-                }}
-                       ref={node => text = node}
-                       className="form-control"
-                       id="text"
-                       placeholder="Lorem ipsum"/>
-                <label for="widgetname">
+                <textarea ref={node => text = node}
+                          className="form-control"
+                          id="text"
+                          placeholder="Lorem ipsum"
+                          defaultValue={widget.text}
+                          onChange={() => {
+                              widget.text = text.value;
+                              updateWidget(widget)
+                          }}/>
+                <label htmlFor="widgetname">
                     Widget Name
                 </label>
                 <input ref={node => name = node}

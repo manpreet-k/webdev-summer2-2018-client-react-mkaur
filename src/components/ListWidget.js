@@ -19,6 +19,7 @@ export const ListWidget = ({widget, updateWidget}) => {
             <select ref={node => ordered = node}
                     className="form-control"
                     id="type"
+                    defaultValue="UNORDERED"
                     onChange={() => {
                         widget.listType = ordered.value;
                         updateWidget(widget)
@@ -30,7 +31,7 @@ export const ListWidget = ({widget, updateWidget}) => {
                     Ordered List
                 </option>
             </select>
-            <label for="widgetname">
+            <label htmlFor="widgetname">
                 Widget Name
             </label>
             <input ref={node => name = node}
@@ -57,7 +58,7 @@ export const ListWidget = ({widget, updateWidget}) => {
                 ))}
             </ol>
             }
-            {widget.listType === "" &&
+            {widget.listType === undefined &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
