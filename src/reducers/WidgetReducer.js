@@ -15,8 +15,14 @@ export const WidgetReducer = (
     switch (action.type) {
 
         case constants.FIND_ALL_WIDGETS_FOR_TOPIC:
-        case constants.SET_ALL_WIDGETS_FOR_TOPIC:
         case constants.SAVE_ALL_WIDGETS:
+            newState = Object.assign({}, state)
+            newState.widgets = action.widgets;
+            newState.isDirty = false;
+            // newState.widgets.sort((a, b) => parseInt(b.position) - parseFloat(a.position));
+            return newState
+
+        case constants.SET_ALL_WIDGETS_FOR_TOPIC:
         case constants.MOVE_WIDGET_UP:
         case constants.MOVE_WIDGET_DOWN:
         case constants.DRAG_WIDGETS_END:
@@ -27,12 +33,14 @@ export const WidgetReducer = (
 
         case constants.DELETE_WIDGET:
             newState = Object.assign({}, state);
+            newState.isDirty = true;
             newState.widgets = state.widgets.filter(
                 widget => widget.position !== action.widgetId);
             return newState;
 
         case constants.CREATE_WIDGET:
             newState = Object.assign({}, state);
+            newState.isDirty = true;
             newState.widgets= [
                     action.widget,
                     ...state.widgets
@@ -41,6 +49,7 @@ export const WidgetReducer = (
 
         case constants.UPDATE_WIDGET:
             newState = Object.assign({}, state);
+            newState.isDirty = true;
             newState.widgets = state.widgets.map(widget => {
                     if(widget.id === action.widget.id) {
                         return action.widget

@@ -4,6 +4,7 @@ import WidgetItem from '../components/WidgetItem';
 import * as constants from '../constants/WidgetConstants';
 import * as widgetActions from '../actions/WidgetActions';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
+import { Prompt } from "react-router-dom";
 
 class WidgetList extends React.Component {
     constructor(props) {
@@ -55,6 +56,12 @@ class WidgetList extends React.Component {
         return (
 
             <div className="wbdv-padding-5">
+                <Prompt
+                    when={this.props.isDirty}
+                    message={location =>
+                        `There is some unsaved data on the form. Do you want to navigate away?`
+                    }
+                />
                 <div className="wbdv-widget-list-top">
                     <div>
                         <label>
@@ -116,7 +123,8 @@ class WidgetList extends React.Component {
 const stateToPropertyMapper = state => (
     {
         widgets: state.widgets,
-        preview: state.preview
+        preview: state.preview,
+        isDirty: state.isDirty
     }
 );
 
