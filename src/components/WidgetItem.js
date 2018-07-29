@@ -29,19 +29,6 @@ const WidgetItemComp = ({widget, widgets, preview, index,
                         <div className="col-7">
                             <h3>{widget.classname} {widget.id} Widget</h3>
                         </div>
-                        <div className="col-2">
-                            <select ref={input => widgetType = input}
-                                    className="form-control"
-                                    defaultValue={widget.classname}
-                                    onChange={() =>
-                                        updateWidgetType(widget.id, widgetType.value)}>
-                                <option value="Heading">Heading Widget</option>
-                                <option value="Paragraph">Paragraph Widget</option>
-                                <option value="Link">Link Widget</option>
-                                <option value="List">List Widget</option>
-                                <option value="Image">Image Widget</option>
-                            </select>
-                        </div>
                         <div className="col-1">
                             <button className="btn btn-warning"
                                     disabled={widgetActions.disableUpButton(widgets, widget.id)}
@@ -55,6 +42,19 @@ const WidgetItemComp = ({widget, widgets, preview, index,
                                     onClick={() => moveWidgetDown(widget.id, widgets)}>
                                 <i className="fa fa-chevron-down"/>
                             </button>
+                        </div>
+                        <div className="col-2">
+                            <select ref={input => widgetType = input}
+                                    className="form-control"
+                                    defaultValue={widget.classname}
+                                    onChange={() =>
+                                        updateWidgetType(widget.id, widgetType.value)}>
+                                <option value="Heading">Heading Widget</option>
+                                <option value="Paragraph">Paragraph Widget</option>
+                                <option value="Link">Link Widget</option>
+                                <option value="List">List Widget</option>
+                                <option value="Image">Image Widget</option>
+                            </select>
                         </div>
                         <div className="col-1">
                             <button className="btn btn-danger"
