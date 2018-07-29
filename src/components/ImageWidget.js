@@ -14,6 +14,7 @@ export const ImageWidget =
                        className="form-control"
                        id="url"
                        placeholder="Image URL"
+                       defaultValue= {widget.src}
                        onChange={() => {
                            widget.src = url.value;
                            updateWidget(widget)

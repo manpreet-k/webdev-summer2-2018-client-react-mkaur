@@ -8,8 +8,14 @@ export const ListWidget =
     return (
         <div>
             <div hidden={preview}>
+                <label htmlFor="text">
+                    List Items
+                </label>
             <textarea ref={node => text = node}
                       className="form-control"
+                      id="text"
+                      placeholder="List Items"
+                      defaultValue={widget.listItems}
                       onChange={() => {
                           widget.listItems = text.value;
                           updateWidget(widget)
@@ -40,6 +46,7 @@ export const ListWidget =
                    id="widgetname"
                    placeholder="Widget Name"
                    value={widget.name}
+                   defaultValue={widget.name}
                    onChange={() => {
                        widget.name = name.value;
                        updateWidget(widget)

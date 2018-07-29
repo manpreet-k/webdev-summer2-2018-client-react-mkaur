@@ -13,7 +13,7 @@ export const ParagraphWidget =
                 <textarea ref={node => text = node}
                           className="form-control"
                           id="text"
-                          placeholder="Lorem ipsum"
+                          placeholder="Paragraph Text"
                           defaultValue={widget.text}
                           onChange={() => {
                               widget.text = text.value;
@@ -27,6 +27,7 @@ export const ParagraphWidget =
                        id="widgetname"
                        placeholder="Widget Name"
                        value={widget.name}
+                       defaultValue={widget.name}
                        onChange={() => {
                            widget.name = name.value;
                            updateWidget(widget)
