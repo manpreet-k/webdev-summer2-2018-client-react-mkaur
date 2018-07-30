@@ -67,6 +67,9 @@ export const moveWidgets = (widgets, old_index, new_index) => {
         }
     }
     widgets.splice(new_index, 0, widgets.splice(old_index, 1)[0]);
+    let temp = widgets[old_index].position;
+    widgets[old_index].position = widgets[new_index].position;
+    widgets[new_index].position = temp;
     return widgets;
 };
 

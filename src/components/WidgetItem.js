@@ -27,7 +27,7 @@ const WidgetItemComp = ({widget, widgets, preview, index,
                 >
                     <div className="form-row">
                         <div className="col-7">
-                            <h3>{widget.classname} {widget.id} Widget</h3>
+                            <h3>{widget.classname} Widget</h3>
                         </div>
                         <div className="col-1">
                             <button className="btn btn-warning"
