@@ -36,16 +36,14 @@ class LessonEditor extends React.Component {
 
     render() {
         return (
-            <div className="form-row">
-                <div className="tab-content">
-                    <TopicPills courseId={this.props.match.params.courseId}
-                                moduleId={this.props.match.params.moduleId}
-                                lessonId={this.props.match.params.lessonId}/>
-                    <div>
-                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                               component={TopicEditor}>
-                        </Route>
-                    </div>
+            <div>
+                <TopicPills courseId={this.props.match.params.courseId}
+                            moduleId={this.props.match.params.moduleId}
+                            lessonId={this.props.match.params.lessonId}/>
+                <div>
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                           component={TopicEditor}>
+                    </Route>
                 </div>
             </div>
         );
