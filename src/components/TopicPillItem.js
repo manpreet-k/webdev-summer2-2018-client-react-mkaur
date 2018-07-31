@@ -7,7 +7,7 @@ export default class TopicPillItem extends React.Component {
         return (
             <li className="nav-item wbdv-pill-item">
                 <Link className="wbdv-link"
-                      to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}>
+                      to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}/widget`}>
                     {this.props.topic.title}
                 </Link>
                 &nbsp;
