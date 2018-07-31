@@ -65,12 +65,15 @@ class WidgetList extends React.Component {
                 <div className="wbdv-widget-list-top">
                     <div>
                         <label>
+                        <label className="wbdv-switch float-left">
                             <input type="checkbox"
                                    ref={node => previewChecked = node}
                                    checked={this.props.preview}
                                    onClick={() => {
                                        this.props.updatedPreview(previewChecked.checked);
                                    }}/>
+                            <span className="wbdv-slider round"/>
+                        </label>
                             Preview
                         </label>
                         <button className="wbdv-margin-5 btn-info btn"

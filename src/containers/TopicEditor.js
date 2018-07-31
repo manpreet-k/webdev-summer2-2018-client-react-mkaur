@@ -28,7 +28,7 @@ export default class TopicEditor extends React.Component {
 
     render() {
         return (
-                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId/widget"
                        component={WidgetEditor}>
                 </Route>
         );
