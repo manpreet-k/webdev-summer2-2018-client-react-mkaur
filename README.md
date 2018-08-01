@@ -21,5 +21,3 @@ Manpreet Kaur
 * Courses can be displayed in a grid layout
 * The order of modules can be rearranged by dragging them into a new position
 * Add draggable widgets to reorder widgets
-* Enforce widget names to be unique within a lesson (or topic)
-* If user tries to navigate away from the screen without changes saved, the system offers to save the changes
