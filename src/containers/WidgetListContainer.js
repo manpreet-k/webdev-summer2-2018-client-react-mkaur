@@ -56,12 +56,12 @@ class WidgetList extends React.Component {
         return (
 
             <div className="wbdv-padding-5">
-                <Prompt
-                    when={this.props.isDirty}
-                    message={location =>
-                        `There is some unsaved data on the form. Do you want to navigate away?`
-                    }
-                />
+                {/*<Prompt*/}
+                    {/*when={this.props.isDirty}*/}
+                    {/*message={location =>*/}
+                        {/*`There is some unsaved data on the form. Do you want to navigate away?`*/}
+                    {/*}*/}
+                {/*/>*/}
                 <div className="wbdv-widget-list-top">
                     <div>
                         <label>
